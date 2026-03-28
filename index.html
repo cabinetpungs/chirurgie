@@ -16,15 +16,12 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
 .app{display:flex;min-height:100vh}
-
-/* SIDEBAR */
 .sidebar{width:232px;background:var(--accent2);color:#fff;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto}
 .sidebar-logo{padding:20px 18px 16px;border-bottom:1px solid rgba(255,255,255,.12)}
 .sidebar-logo h1{font-family:'DM Serif Display',serif;font-size:19px;color:#fff;line-height:1.2}
 .sidebar-logo p{font-size:10px;opacity:.5;margin-top:3px;font-family:'DM Mono',monospace;letter-spacing:.05em}
 .sync-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
-.sync-dot.ok{background:#4ade80}.sync-dot.wait{background:#fbbf24;animation:pulse 1.2s infinite}
-.sync-dot.err{background:#f87171}
+.sync-dot.ok{background:#4ade80}.sync-dot.wait{background:#fbbf24;animation:pulse 1.2s infinite}.sync-dot.err{background:#f87171}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .sidebar-nav{padding:12px 10px;flex:1}
 .nav-item{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:7px;cursor:pointer;transition:background .15s;font-size:13px;color:rgba(255,255,255,.72);margin-bottom:2px}
@@ -33,19 +30,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .nav-item .icon{font-size:15px;width:18px;text-align:center}
 .nav-section{font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase;opacity:.38;padding:12px 11px 5px}
 .main{margin-left:232px;flex:1}
-
-/* TOPBAR */
 .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
 .page-title{font-family:'DM Serif Display',serif;font-size:20px}
 .topbar-actions{display:flex;gap:8px;align-items:center}
-
-/* BUTTONS */
 .btn{padding:7px 14px;border-radius:7px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;transition:all .15s}
 .btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent2)}
 .btn-secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border)}.btn-secondary:hover{background:var(--border)}
 .btn-danger{background:#FEE2E2;color:var(--red)}.btn-danger:hover{background:#FECACA}
 .btn-sm{padding:4px 10px;font-size:11.5px}
-
 .content{padding:22px 24px}
 .card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:18px;box-shadow:var(--shadow)}
 .card-title{font-family:'DM Serif Display',serif;font-size:15px;margin-bottom:12px}
@@ -55,8 +47,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .stat-label{font-size:10px;font-family:'DM Mono',monospace;letter-spacing:.06em;color:var(--text2);text-transform:uppercase}
 .stat-value{font-size:26px;font-family:'DM Serif Display',serif;margin-top:3px}
 .stat-sub{font-size:11px;color:var(--text2);margin-top:2px}
-
-/* TABLES */
 table{width:100%;border-collapse:collapse}
 th{text-align:left;padding:9px 12px;font-size:10px;font-family:'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);border-bottom:1px solid var(--border);white-space:nowrap}
 td{padding:10px 12px;border-bottom:1px solid var(--surface2);font-size:13px;vertical-align:middle}
@@ -67,8 +57,6 @@ tr.row-encours{border-left:3px solid var(--orange)}
 tr.row-encours:hover td{background:#FEF3C7}
 tr.row-planifiee td{background:#F0F6FF}
 tr.row-planifiee:hover td{background:#DBEAFE}
-
-/* BADGES */
 .badge{display:inline-block;padding:3px 8px;border-radius:20px;font-size:10.5px;font-weight:500;font-family:'DM Mono',monospace}
 .badge-green{background:#D1FAE5;color:#065F46}
 .badge-red{background:#FEE2E2;color:#991B1B}
@@ -76,16 +64,12 @@ tr.row-planifiee:hover td{background:#DBEAFE}
 .badge-orange{background:#FEF3C7;color:#92400E}
 .badge-gray{background:var(--surface2);color:var(--text2)}
 .badge-amber{background:#FEF3C7;color:var(--amber)}
-
-/* FORMS */
 .form-group{margin-bottom:13px}
 .form-label{display:block;font-size:10.5px;font-weight:500;color:var(--text2);margin-bottom:4px;font-family:'DM Mono',monospace;letter-spacing:.04em;text-transform:uppercase}
 .form-control{width:100%;padding:8px 11px;border:1px solid var(--border);border-radius:7px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--surface);color:var(--text);transition:border .15s;outline:none}
 .form-control:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(44,95,138,.1)}
 textarea.form-control{resize:vertical;min-height:65px}
 select.form-control{cursor:pointer}
-
-/* ACTES */
 .acte-row{display:flex;align-items:flex-start;gap:9px;padding:8px 11px;background:var(--surface);border-radius:7px;border:1px solid var(--border);margin-bottom:6px;transition:border-color .15s,background .15s}
 .acte-row.active{border-color:var(--accent);background:#EFF6FF}
 .acte-checkbox{margin-top:3px;width:15px;height:15px;cursor:pointer;accent-color:var(--accent);flex-shrink:0}
@@ -97,26 +81,18 @@ select.form-control{cursor:pointer}
 .adf label{display:block;font-size:10px;font-family:'DM Mono',monospace;text-transform:uppercase;color:var(--text2);margin-bottom:3px}
 .adf input,.adf select{width:100%;padding:6px 8px;border:1px solid var(--border);border-radius:6px;font-size:12.5px;font-family:'DM Sans',sans-serif;outline:none;background:var(--surface)}
 .adf input:focus,.adf select:focus{border-color:var(--accent)}
-
-/* REC STATUS */
 .rec-status{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:'DM Mono',monospace;font-weight:500;padding:3px 8px;border-radius:5px;cursor:pointer;border:1px solid;transition:all .15s;white-space:nowrap}
 .rec-status.recu{background:#D1FAE5;color:#065F46;border-color:#6EE7B7}
 .rec-status.attente{background:#FEF3C7;color:#92400E;border-color:#FDE68A}
-
-/* ADMIN */
 .admin-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--surface2)}
 .admin-row:last-child{border-bottom:none}
 .admin-toggle{display:flex;gap:5px}
 .toggle-btn{padding:4px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface2);cursor:pointer;font-size:11.5px;font-family:'DM Mono',monospace;transition:all .15s}
 .toggle-btn.yes{background:#D1FAE5;color:#065F46;border-color:#6EE7B7}
 .toggle-btn.no{background:#FEE2E2;color:#991B1B;border-color:#FCA5A5}
-
-/* IMPLANT ITEMS */
 .implant-item{background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:9px 11px;margin-bottom:7px;position:relative}
 .implant-item .rem-btn{position:absolute;top:7px;right:8px;background:none;border:none;cursor:pointer;font-size:14px;color:var(--text2);line-height:1}
 .implant-item .rem-btn:hover{color:var(--red)}
-
-/* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.46);z-index:1000;display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto}
 .modal{background:var(--surface);border-radius:14px;width:100%;max-width:780px;box-shadow:var(--shadow-lg);animation:slideIn .2s ease}
 @keyframes slideIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
@@ -126,8 +102,6 @@ select.form-control{cursor:pointer}
 .modal-footer{padding:13px 22px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end}
 .close-btn{background:none;border:none;cursor:pointer;font-size:18px;color:var(--text2);padding:2px 5px;border-radius:4px}
 .close-btn:hover{background:var(--surface2)}
-
-/* PAGES */
 .page{display:none}.page.active{display:block}
 .stock-bar-bg{background:var(--surface2);border-radius:4px;height:6px;overflow:hidden;margin-top:5px}
 .stock-bar-fill{height:100%;border-radius:4px;transition:width .4s}
@@ -152,21 +126,41 @@ select.form-control{cursor:pointer}
 .stock-recap-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--surface2);gap:10px}
 .stock-recap-row:last-child{border-bottom:none}
 
-/* LOADING OVERLAY */
+/* CALENDAR */
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal-month-title{font-family:'DM Serif Display',serif;font-size:20px;text-transform:capitalize}
+.cal-nav{display:flex;gap:8px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-day-name{text-align:center;font-size:10px;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);padding:6px 0}
+.cal-cell{min-height:88px;border-radius:8px;border:1px solid var(--border);background:var(--surface);padding:6px;position:relative;transition:box-shadow .15s}
+.cal-cell:hover{box-shadow:var(--shadow)}
+.cal-cell.other-month{background:var(--surface2);opacity:.55}
+.cal-cell.today{border-color:var(--accent);border-width:2px}
+.cal-cell-num{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:4px}
+.cal-cell.today .cal-cell-num{color:var(--accent);font-size:13px}
+.cal-event{border-radius:5px;padding:2px 6px;font-size:11px;font-weight:500;margin-bottom:2px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.5;transition:opacity .1s}
+.cal-event:hover{opacity:.8}
+.cal-event.planifiee{background:#DBEAFE;color:#1E40AF}
+.cal-event.encours{background:#FEF3C7;color:#92400E}
+.cal-event.realisee{background:#D1FAE5;color:#065F46}
+.cal-event.annulee{background:var(--surface2);color:var(--text2);text-decoration:line-through}
+.cal-legend{display:flex;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.cal-legend-item{display:flex;align-items:center;gap:5px;font-size:12px}
+.cal-legend-dot{width:10px;height:10px;border-radius:3px}
+
+/* LOADING */
 #loading-overlay{position:fixed;inset:0;background:var(--accent2);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}
 #loading-overlay h2{font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:12px}
 #loading-overlay p{font-family:'DM Mono',monospace;font-size:12px;opacity:.7}
 .spinner{width:32px;height:32px;border:3px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;margin-bottom:20px}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* PDF PRINT */
+/* PDF */
 @media print{
-  .sidebar,.topbar,.modal-overlay,.btn,#loading-overlay{display:none!important}
+  .sidebar,.topbar,.modal-overlay,.btn,#loading-overlay,.cal-nav{display:none!important}
   .main{margin-left:0!important}
   body{font-size:11px;background:#fff}
-  .content{padding:8px}
-  .page{display:block!important}
-  #page-dashboard,#page-interventions,#page-agenda,#page-stocks,#page-implants,#page-materiaux,#page-reception{display:none!important}
+  .page{display:none!important}
   #pdf-print-area{display:block!important}
 }
 #pdf-print-area{display:none}
@@ -174,14 +168,12 @@ select.form-control{cursor:pointer}
 </head>
 <body>
 
-<!-- LOADING -->
 <div id="loading-overlay">
   <div class="spinner"></div>
   <h2>Dr Pungs</h2>
   <p id="loading-msg">Connexion à Firebase…</p>
 </div>
 
-<!-- PDF PRINT AREA -->
 <div id="pdf-print-area"></div>
 
 <div class="app">
@@ -247,18 +239,28 @@ select.form-control{cursor:pointer}
   </div>
 </div>
 
-<!-- AGENDA -->
+<!-- AGENDA CALENDRIER -->
 <div id="page-agenda" class="page">
   <div class="topbar"><div class="page-title">Agenda Chirurgical</div><div class="topbar-actions"><button class="btn btn-primary" onclick="openNewIV()">+ Programmer</button></div></div>
   <div class="content">
-    <div class="tab-bar">
-      <div class="tab active" onclick="setAgTab('upcoming',this)">À venir</div>
-      <div class="tab" onclick="setAgTab('encours',this)" style="color:var(--orange)">⏳ En cours</div>
-      <div class="tab" onclick="setAgTab('done',this)">Réalisées</div>
-      <div class="tab" onclick="setAgTab('all',this)">Toutes</div>
+    <div class="cal-header">
+      <div class="cal-nav">
+        <button class="btn btn-secondary" onclick="calPrev()">‹ Mois préc.</button>
+        <button class="btn btn-secondary" onclick="calToday()">Aujourd'hui</button>
+        <button class="btn btn-secondary" onclick="calNext()">Mois suiv. ›</button>
+      </div>
+      <div class="cal-month-title" id="cal-month-title"></div>
+      <div style="width:180px"></div>
     </div>
-    <div class="card" style="padding:0;overflow:hidden">
-      <table><thead><tr><th>Date</th><th>Patient</th><th>Nature</th><th>Implant(s)</th><th>Allergies</th><th>Praticien réf.</th><th>Statut</th><th></th></tr></thead><tbody id="ag-table"></tbody></table>
+    <div class="cal-legend">
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#DBEAFE"></div><span style="color:#1E40AF">Planifiée</span></div>
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#FEF3C7"></div><span style="color:#92400E">En cours</span></div>
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#D1FAE5"></div><span style="color:#065F46">Réalisée</span></div>
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--surface2)"></div><span style="color:var(--text2)">Annulée</span></div>
+    </div>
+    <div class="card" style="padding:12px">
+      <div class="cal-grid" id="cal-day-names"></div>
+      <div class="cal-grid" style="margin-top:6px" id="cal-cells"></div>
     </div>
   </div>
 </div>
@@ -287,7 +289,7 @@ select.form-control{cursor:pointer}
   <div class="content"><div class="card" style="padding:0"><table><thead><tr><th>Date</th><th>Produit</th><th>Type</th><th>Qté</th><th>Fournisseur</th><th>Note</th></tr></thead><tbody id="rec-table"></tbody></table></div></div>
 </div>
 
-</div></div><!-- /main /app -->
+</div></div>
 
 <!-- ===== MODAL INTERVENTION ===== -->
 <div id="modal-iv" class="modal-overlay" style="display:none" onclick="closeOnOverlay(event,'modal-iv')">
@@ -301,7 +303,6 @@ select.form-control{cursor:pointer}
     </div>
     <div class="modal-body">
       <input type="hidden" id="iv-id">
-
       <div class="block-title">📋 Informations générales</div>
       <div class="grid-2">
         <div class="form-group"><label class="form-label">Date intervention *</label><input type="date" class="form-control" id="iv-date"></div>
@@ -323,53 +324,32 @@ select.form-control{cursor:pointer}
         <div class="form-group"><label class="form-label">Praticien référant</label><input class="form-control" id="iv-praticien" placeholder="Dr Dupont"></div>
       </div>
       <div class="form-group"><label class="form-label">Nature de l'intervention *</label><input class="form-control" id="iv-nature" placeholder="Pose implant, greffe osseuse, sinus lift…"></div>
-      <div class="grid-2">
-        <div class="form-group"><label class="form-label">Emplacement général / Dent(s)</label><input class="form-control" id="iv-dents" placeholder="ex: 16, 26, 46-47"></div>
-        <div class="form-group"><label class="form-label">Guide chirurgical</label>
-          <select class="form-control" id="iv-guide">
-            <option value="">— Non renseigné —</option>
-            <option value="oui">Oui — utilisé</option>
-            <option value="non">Non — non utilisé</option>
-          </select>
-        </div>
-      </div>
+      <div class="form-group"><label class="form-label">Emplacement général / Dent(s)</label><input class="form-control" id="iv-dents" placeholder="ex: 16, 26, 46-47"></div>
 
       <hr class="divider">
       <div class="block-title">🗂 Volet administratif</div>
       <div style="background:var(--surface2);border-radius:8px;padding:11px 15px;margin-bottom:13px">
         <div class="admin-row"><span style="font-size:13px">Cone beam reçu ?</span>
-          <div class="admin-toggle">
-            <button class="toggle-btn" id="adm-conebeam-oui" onclick="setAdm('conebeam','oui')">Oui</button>
-            <button class="toggle-btn" id="adm-conebeam-non" onclick="setAdm('conebeam','non')">Non</button>
-          </div>
+          <div class="admin-toggle"><button class="toggle-btn" id="adm-conebeam-oui" onclick="setAdm('conebeam','oui')">Oui</button><button class="toggle-btn" id="adm-conebeam-non" onclick="setAdm('conebeam','non')">Non</button></div>
         </div>
         <div class="admin-row"><span style="font-size:13px">Devis signé ?</span>
-          <div class="admin-toggle">
-            <button class="toggle-btn" id="adm-devis-oui" onclick="setAdm('devis','oui')">Oui</button>
-            <button class="toggle-btn" id="adm-devis-non" onclick="setAdm('devis','non')">Non</button>
-          </div>
+          <div class="admin-toggle"><button class="toggle-btn" id="adm-devis-oui" onclick="setAdm('devis','oui')">Oui</button><button class="toggle-btn" id="adm-devis-non" onclick="setAdm('devis','non')">Non</button></div>
         </div>
         <div class="admin-row"><span style="font-size:13px">Consentement signé ?</span>
-          <div class="admin-toggle">
-            <button class="toggle-btn" id="adm-consentement-oui" onclick="setAdm('consentement','oui')">Oui</button>
-            <button class="toggle-btn" id="adm-consentement-non" onclick="setAdm('consentement','non')">Non</button>
-          </div>
+          <div class="admin-toggle"><button class="toggle-btn" id="adm-consentement-oui" onclick="setAdm('consentement','oui')">Oui</button><button class="toggle-btn" id="adm-consentement-non" onclick="setAdm('consentement','non')">Non</button></div>
         </div>
       </div>
 
       <hr class="divider">
       <div class="block-title">⚙️ Actes réalisés <span style="font-weight:400;opacity:.6;font-size:9px">(cochez tout ce qui s'applique)</span></div>
 
-      <!-- IMPLANTS POSÉS -->
+      <!-- IMPLANTS -->
       <div class="acte-row" id="ar-implant">
         <input type="checkbox" class="acte-checkbox" id="ac-implant" onchange="toggleAc('implant')">
         <div style="flex:1">
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
             <label class="acte-label-text" for="ac-implant">Implant(s) posé(s)</label>
-            <div style="display:flex;align-items:center;gap:6px">
-              <span style="font-size:10.5px;color:var(--text2)">Réception :</span>
-              <button class="rec-status attente" id="rec-implant" onclick="toggleRec('implant')">⏳ En attente</button>
-            </div>
+            <div style="display:flex;align-items:center;gap:6px"><span style="font-size:10.5px;color:var(--text2)">Réception :</span><button class="rec-status attente" id="rec-implant" onclick="toggleRec('implant')">⏳ En attente</button></div>
           </div>
           <div class="acte-details" id="ad-implant">
             <div id="implants-list"></div>
@@ -384,15 +364,29 @@ select.form-control{cursor:pointer}
         <div style="flex:1">
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
             <label class="acte-label-text" for="ac-prgf">PRGF</label>
-            <div style="display:flex;align-items:center;gap:6px">
-              <span style="font-size:10.5px;color:var(--text2)">Réception :</span>
-              <button class="rec-status attente" id="rec-prgf" onclick="toggleRec('prgf')">⏳ En attente</button>
-            </div>
+            <div style="display:flex;align-items:center;gap:6px"><span style="font-size:10.5px;color:var(--text2)">Réception :</span><button class="rec-status attente" id="rec-prgf" onclick="toggleRec('prgf')">⏳ En attente</button></div>
           </div>
           <div class="acte-details" id="ad-prgf">
             <div class="acte-details-row">
               <div class="adf"><label>Calcium</label><select id="prgf-calcium"><option value="sans">Sans calcium</option><option value="avec">Avec calcium</option></select></div>
               <div class="adf"><label>Note</label><input type="text" id="prgf-note" placeholder="Précisions…"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GUIDE CHIRURGICAL (dans actes) -->
+      <div class="acte-row" id="ar-guide">
+        <input type="checkbox" class="acte-checkbox" id="ac-guide" onchange="toggleAc('guide')">
+        <div style="flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
+            <label class="acte-label-text" for="ac-guide">Guide chirurgical</label>
+            <div style="display:flex;align-items:center;gap:6px"><span style="font-size:10.5px;color:var(--text2)">Réception :</span><button class="rec-status attente" id="rec-guide" onclick="toggleRec('guide')">⏳ En attente</button></div>
+          </div>
+          <div class="acte-details" id="ad-guide">
+            <div class="acte-details-row">
+              <div class="adf"><label>Empreinte faite le</label><input type="date" id="guide-empreinte"></div>
+              <div class="adf"><label>Note</label><input type="text" id="guide-note" placeholder="Précisions…"></div>
             </div>
           </div>
         </div>
@@ -409,30 +403,31 @@ select.form-control{cursor:pointer}
         </div>
       </div>
 
-      <!-- SCRAPPER -->
-      <div class="acte-row" id="ar-scrapper">
-        <input type="checkbox" class="acte-checkbox" id="ac-scrapper" onchange="toggleAc('scrapper')">
+      <!-- SCRAPER -->
+      <div class="acte-row" id="ar-scraper">
+        <input type="checkbox" class="acte-checkbox" id="ac-scraper" onchange="toggleAc('scraper')">
         <div style="flex:1">
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
-            <label class="acte-label-text" for="ac-scrapper">Scrapper</label>
-            <div style="display:flex;align-items:center;gap:6px">
-              <span style="font-size:10.5px;color:var(--text2)">Réception :</span>
-              <button class="rec-status attente" id="rec-scrapper" onclick="toggleRec('scrapper')">⏳ En attente</button>
-            </div>
+            <label class="acte-label-text" for="ac-scraper">Scraper</label>
+            <div style="display:flex;align-items:center;gap:6px"><span style="font-size:10.5px;color:var(--text2)">Réception :</span><button class="rec-status attente" id="rec-scraper" onclick="toggleRec('scraper')">⏳ En attente</button></div>
           </div>
-          <div class="acte-details" id="ad-scrapper">
-            <div class="acte-details-row"><div class="adf"><label>Note</label><input type="text" id="scrapper-note" placeholder="Précisions…"></div></div>
+          <div class="acte-details" id="ad-scraper">
+            <div class="acte-details-row">
+              <div class="adf"><label>Référence (stock)</label><select id="scraper-ref"><option value="">—</option></select></div>
+              <div class="adf" style="max-width:90px"><label>Qté utilisée</label><input type="number" id="scraper-qte" value="1" min="1"></div>
+              <div class="adf"><label>Note</label><input type="text" id="scraper-note" placeholder="Précisions…"></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- VERSAN -->
-      <div class="acte-row" id="ar-versan">
-        <input type="checkbox" class="acte-checkbox" id="ac-versan" onchange="toggleAc('versan')">
+      <!-- VERSAH -->
+      <div class="acte-row" id="ar-versah">
+        <input type="checkbox" class="acte-checkbox" id="ac-versah" onchange="toggleAc('versah')">
         <div style="flex:1">
-          <label class="acte-label-text" for="ac-versan">Versan</label>
-          <div class="acte-details" id="ad-versan">
-            <div class="acte-details-row"><div class="adf"><label>Dosage / Note</label><input type="text" id="versan-note" placeholder="Précisions…"></div></div>
+          <label class="acte-label-text" for="ac-versah">Versah</label>
+          <div class="acte-details" id="ad-versah">
+            <div class="acte-details-row"><div class="adf"><label>Dosage / Note</label><input type="text" id="versah-note" placeholder="Précisions…"></div></div>
           </div>
         </div>
       </div>
@@ -482,17 +477,13 @@ select.form-control{cursor:pointer}
         <div style="flex:1">
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
             <label class="acte-label-text" for="ac-biooss">Bio-Oss (comblement osseux)</label>
-            <div style="display:flex;align-items:center;gap:6px">
-              <span style="font-size:10.5px;color:var(--text2)">Réception :</span>
-              <button class="rec-status attente" id="rec-biooss" onclick="toggleRec('biooss')">⏳ En attente</button>
-            </div>
+            <div style="display:flex;align-items:center;gap:6px"><span style="font-size:10.5px;color:var(--text2)">Réception :</span><button class="rec-status attente" id="rec-biooss" onclick="toggleRec('biooss')">⏳ En attente</button></div>
           </div>
           <div class="acte-details" id="ad-biooss">
             <div class="acte-details-row">
-              <div class="adf"><label>Grammage</label>
-                <select id="biooss-g"><option value="">Sélectionner…</option><option value="0.25g">0,25 g</option><option value="0.5g">0,5 g</option><option value="1g">1 g</option><option value="2g">2 g</option><option value="autre">Autre</option></select>
-              </div>
-              <div class="adf"><label>Note / grammage précis</label><input type="text" id="biooss-note" placeholder="ex: 1,5g…"></div>
+              <div class="adf"><label>Référence (stock)</label><select id="biooss-ref"><option value="">—</option></select></div>
+              <div class="adf" style="max-width:90px"><label>Qté utilisée</label><input type="number" id="biooss-qte" value="1" min="1"></div>
+              <div class="adf"><label>Grammage / Note</label><input type="text" id="biooss-note" placeholder="0,5g, 1g…"></div>
             </div>
           </div>
         </div>
@@ -504,18 +495,16 @@ select.form-control{cursor:pointer}
         <div style="flex:1">
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
             <label class="acte-label-text" for="ac-membrane">Membrane</label>
-            <div style="display:flex;align-items:center;gap:6px">
-              <span style="font-size:10.5px;color:var(--text2)">Réception :</span>
-              <button class="rec-status attente" id="rec-membrane" onclick="toggleRec('membrane')">⏳ En attente</button>
-            </div>
+            <div style="display:flex;align-items:center;gap:6px"><span style="font-size:10.5px;color:var(--text2)">Réception :</span><button class="rec-status attente" id="rec-membrane" onclick="toggleRec('membrane')">⏳ En attente</button></div>
           </div>
           <div class="acte-details" id="ad-membrane">
             <div class="acte-details-row">
               <div class="adf"><label>Référence (stock)</label><select id="mem-ref"><option value="">—</option></select></div>
+              <div class="adf" style="max-width:90px"><label>Qté utilisée</label><input type="number" id="mem-qte" value="1" min="1"></div>
               <div class="adf"><label>Taille</label>
                 <select id="mem-taille"><option value="">Sélectionner…</option><option value="15x20mm">15×20 mm</option><option value="20x30mm">20×30 mm</option><option value="25x35mm">25×35 mm</option><option value="30x40mm">30×40 mm</option><option value="autre">Autre</option></select>
               </div>
-              <div class="adf"><label>Note</label><input type="text" id="mem-note" placeholder="découpée, suturée…"></div>
+              <div class="adf"><label>Note</label><input type="text" id="mem-note" placeholder="découpée…"></div>
             </div>
           </div>
         </div>
@@ -536,10 +525,7 @@ select.form-control{cursor:pointer}
   <div class="modal" style="max-width:760px">
     <div class="modal-header">
       <div class="modal-title" id="fiche-titre">Fiche</div>
-      <div style="display:flex;gap:7px">
-        <button class="btn btn-secondary btn-sm" onclick="printFicheModal()">🖨️ Imprimer / PDF</button>
-        <button class="close-btn" onclick="closeModal('modal-fiche')">✕</button>
-      </div>
+      <div style="display:flex;gap:7px"><button class="btn btn-secondary btn-sm" onclick="printFicheModal()">🖨️ PDF</button><button class="close-btn" onclick="closeModal('modal-fiche')">✕</button></div>
     </div>
     <div class="modal-body" id="fiche-content"></div>
     <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('modal-fiche')">Fermer</button></div>
@@ -560,10 +546,7 @@ select.form-control{cursor:pointer}
       </div>
       <div class="form-group"><label class="form-label">Note</label><input class="form-control" id="ti-note"></div>
     </div>
-    <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="closeModal('modal-implant')">Annuler</button>
-      <button class="btn btn-primary" onclick="saveImplant()">Enregistrer</button>
-    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('modal-implant')">Annuler</button><button class="btn btn-primary" onclick="saveImplant()">Enregistrer</button></div>
   </div>
 </div>
 
@@ -576,9 +559,9 @@ select.form-control{cursor:pointer}
       <div class="form-group"><label class="form-label">Nom / Référence *</label><input class="form-control" id="tm-nom" placeholder="Bio-Gide 25×35mm"></div>
       <div class="form-group"><label class="form-label">Catégorie</label>
         <select class="form-control" id="tm-cat">
-          <option value="comblement">Comblement osseux</option>
+          <option value="comblement">Comblement osseux (Bio-Oss…)</option>
           <option value="membrane">Membrane</option>
-          <option value="scapper">Scapper</option>
+          <option value="scapper">Scraper</option>
           <option value="autre">Autre</option>
         </select>
       </div>
@@ -589,10 +572,7 @@ select.form-control{cursor:pointer}
       </div>
       <div class="form-group"><label class="form-label">Unité</label><input class="form-control" id="tm-unite" placeholder="unité, g, ml…"></div>
     </div>
-    <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="closeModal('modal-materiau')">Annuler</button>
-      <button class="btn btn-primary" onclick="saveMateriau()">Enregistrer</button>
-    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('modal-materiau')">Annuler</button><button class="btn btn-primary" onclick="saveMateriau()">Enregistrer</button></div>
   </div>
 </div>
 
@@ -608,17 +588,13 @@ select.form-control{cursor:pointer}
       <div class="form-group"><label class="form-label">Fournisseur</label><input class="form-control" id="r-fournisseur"></div>
       <div class="form-group"><label class="form-label">Note</label><input class="form-control" id="r-note"></div>
     </div>
-    <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="closeModal('modal-reception')">Annuler</button>
-      <button class="btn btn-primary" onclick="saveRec()">Enregistrer</button>
-    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('modal-reception')">Annuler</button><button class="btn btn-primary" onclick="saveRec()">Enregistrer</button></div>
   </div>
 </div>
 
-<!-- FIREBASE + APP SCRIPT -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot, getDocs, writeBatch }
+import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -627,173 +603,145 @@ const firebaseConfig = {
   projectId: "drpungs-b87f4",
   storageBucket: "drpungs-b87f4.firebasestorage.app",
   messagingSenderId: "133873992576",
-  appId: "1:133873992576:web:b5c8c47ad0e953783d3765",
-  measurementId: "G-DF5QLQMM5M"
+  appId: "1:133873992576:web:b5c8c47ad0e953783d3765"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ── SYNC STATE ──────────────────────────────────────────────────────────────
 let cache = { interventions:{}, implants:{}, materiaux:{}, receptions:{} };
 
-function setSyncStatus(state){ // 'ok' | 'wait' | 'err'
-  const dot=document.getElementById('sync-dot');
-  const lbl=document.getElementById('sync-label');
+// ── SYNC ────────────────────────────────────────────────────────────────────
+function setSyncStatus(state){
+  const dot=document.getElementById('sync-dot'), lbl=document.getElementById('sync-label');
   dot.className='sync-dot '+state;
-  lbl.textContent=state==='ok'?'Synchronisé':state==='wait'?'Synchronisation…':'Erreur de connexion';
+  lbl.textContent=state==='ok'?'Synchronisé':state==='wait'?'Synchronisation…':'Erreur connexion';
 }
+const COLS=['interventions','implants','materiaux','receptions'];
+let unsubscribers=[], loaded=0;
+function startListeners(){
+  unsubscribers.forEach(u=>u()); unsubscribers=[]; loaded=0; setSyncStatus('wait');
+  COLS.forEach(col=>{
+    const u=onSnapshot(collection(db,col),snap=>{
+      cache[col]={};
+      snap.forEach(d=>{ cache[col][d.id]={id:d.id,...d.data()}; });
+      loaded++;
+      if(loaded>=COLS.length){
+        document.getElementById('loading-overlay').style.display='none';
+        setSyncStatus('ok');
+        refreshCurrentPage();
+      } else if(loaded>COLS.length){ setSyncStatus('ok'); refreshCurrentPage(); }
+    },err=>{ setSyncStatus('err'); document.getElementById('loading-msg').textContent='Erreur: '+err.message; });
+    unsubscribers.push(u);
+  });
+}
+function refreshCurrentPage(){
+  updateStats();
+  const id=document.querySelector('.page.active')?.id?.replace('page-','');
+  const map={dashboard:renderDash,interventions:renderIV,agenda:renderCal,stocks:renderStocksRecap,implants:renderImplants,materiaux:renderMat,reception:renderRec};
+  map[id]?.();
+}
+
+// ── FIRESTORE WRITE ─────────────────────────────────────────────────────────
+async function fsSet(col,id,data){ setSyncStatus('wait'); await setDoc(doc(db,col,id),data); setSyncStatus('ok'); }
+async function fsDel(col,id){ setSyncStatus('wait'); await deleteDoc(doc(db,col,id)); setSyncStatus('ok'); }
 
 // ── HELPERS ─────────────────────────────────────────────────────────────────
 function today(){ return new Date().toISOString().slice(0,10); }
 function v(id){ const el=document.getElementById(id); return el?el.value:''; }
 function sv(id,val){ const el=document.getElementById(id); if(el&&val!=null)el.value=val; }
-function safeId(str){ return str.replace(/[^a-zA-Z0-9_-]/g,'_'); }
-function genId(prefix){ return prefix+'_'+Date.now()+'_'+Math.random().toString(36).slice(2,7); }
-
-// ── LISTENERS ───────────────────────────────────────────────────────────────
-const COLS = ['interventions','implants','materiaux','receptions'];
-let unsubscribers = [];
-
-function startListeners(){
-  unsubscribers.forEach(u=>u());
-  unsubscribers=[];
-  let loadedCount=0;
-  setSyncStatus('wait');
-  COLS.forEach(colName=>{
-    const u = onSnapshot(collection(db,colName), snap=>{
-      cache[colName]={};
-      snap.forEach(d=>{ cache[colName][d.id]={id:d.id,...d.data()}; });
-      loadedCount++;
-      if(loadedCount>=COLS.length){
-        document.getElementById('loading-overlay').style.display='none';
-        setSyncStatus('ok');
-        refreshCurrentPage();
-      }
-      // Refresh on subsequent updates
-      if(loadedCount>=COLS.length) refreshCurrentPage();
-    }, err=>{
-      console.error(err);
-      setSyncStatus('err');
-      document.getElementById('loading-msg').textContent='Erreur Firebase: '+err.message;
-    });
-    unsubscribers.push(u);
-  });
-}
-
-function refreshCurrentPage(){
-  updateStats();
-  const active=document.querySelector('.page.active');
-  if(!active)return;
-  const id=active.id.replace('page-','');
-  const map={dashboard:renderDash,interventions:renderIV,agenda:()=>renderAg(agTab),stocks:renderStocksRecap,implants:renderImplants,materiaux:renderMat,reception:renderRec};
-  map[id]?.();
-}
-
-// ── FIRESTORE WRITE HELPERS ─────────────────────────────────────────────────
-async function fsSet(colName, id, data){
-  setSyncStatus('wait');
-  await setDoc(doc(db,colName,id), data);
-  setSyncStatus('ok');
-}
-async function fsDel(colName, id){
-  setSyncStatus('wait');
-  await deleteDoc(doc(db,colName,id));
-  setSyncStatus('ok');
-}
+function genId(p){ return p+'_'+Date.now()+'_'+Math.random().toString(36).slice(2,6); }
 
 // ── NAV ──────────────────────────────────────────────────────────────────────
-window.showPage = function(name,el){
+window.showPage=function(name,el){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   if(el)el.classList.add('active');
-  const map={dashboard:renderDash,interventions:renderIV,agenda:()=>renderAg(agTab),stocks:renderStocksRecap,implants:renderImplants,materiaux:renderMat,reception:renderRec};
+  const map={dashboard:renderDash,interventions:renderIV,agenda:renderCal,stocks:renderStocksRecap,implants:renderImplants,materiaux:renderMat,reception:renderRec};
   map[name]?.();
 };
 
 // ── MODAL ────────────────────────────────────────────────────────────────────
-window.openModal = function(id){
-  if(id==='modal-reception'){ sv('r-date',today()); updRecSel(); }
-  document.getElementById(id).style.display='flex';
-};
-window.closeModal = function(id){
+window.openModal=function(id){ if(id==='modal-reception'){sv('r-date',today());updRecSel();} document.getElementById(id).style.display='flex'; };
+window.closeModal=function(id){
   document.getElementById(id).style.display='none';
   if(id==='modal-iv') resetIVForm();
   if(id==='modal-implant'){ sv('ti-id',''); ['ti-nom','ti-marque','ti-note'].forEach(x=>sv(x,'')); sv('ti-stock',0); sv('ti-seuil',3); }
   if(id==='modal-materiau'){ sv('tm-id',''); ['tm-nom','tm-marque','tm-unite'].forEach(x=>sv(x,'')); sv('tm-stock',0); sv('tm-seuil',2); }
 };
-window.closeOnOverlay = function(e,id){ if(e.target===document.getElementById(id)) closeModal(id); };
+window.closeOnOverlay=function(e,id){ if(e.target===document.getElementById(id)) closeModal(id); };
 
-// ── ADMIN TOGGLES ─────────────────────────────────────────────────────────────
-let admState = { conebeam:'', devis:'', consentement:'' };
-window.setAdm = function(field,val){
-  admState[field] = admState[field]===val ? '' : val;
-  ['oui','non'].forEach(v2=>{
-    const btn=document.getElementById(`adm-${field}-${v2}`);
-    if(!btn)return;
-    btn.className='toggle-btn'+(admState[field]===v2?(v2==='oui'?' yes':' no'):'');
-  });
-};
+// ── ADMIN ─────────────────────────────────────────────────────────────────────
+let admState={conebeam:'',devis:'',consentement:''};
+window.setAdm=function(f,val){ admState[f]=admState[f]===val?'':val; ['oui','non'].forEach(v2=>{ const btn=document.getElementById(`adm-${f}-${v2}`); if(btn)btn.className='toggle-btn'+(admState[f]===v2?(v2==='oui'?' yes':' no'):''); }); };
 function resetAdm(){ admState={conebeam:'',devis:'',consentement:''}; ['conebeam','devis','consentement'].forEach(f=>['oui','non'].forEach(v2=>{ const btn=document.getElementById(`adm-${f}-${v2}`); if(btn)btn.className='toggle-btn'; })); }
 function loadAdm(data){ if(!data)return; admState={...data}; ['conebeam','devis','consentement'].forEach(f=>{ if(!admState[f])return; const btn=document.getElementById(`adm-${f}-${admState[f]}`); if(btn)btn.className='toggle-btn'+(admState[f]==='oui'?' yes':' no'); }); }
 
-// ── RECEPTION STATUS ──────────────────────────────────────────────────────────
-const REC_KEYS=['implant','prgf','scrapper','biooss','membrane'];
-let recSt={implant:'attente',prgf:'attente',scrapper:'attente',biooss:'attente',membrane:'attente'};
-window.toggleRec = function(k){ recSt[k]=recSt[k]==='recu'?'attente':'recu'; updateRecBtn(k); };
-function updateRecBtn(k){ const btn=document.getElementById('rec-'+k); if(!btn)return; if(recSt[k]==='recu'){btn.className='rec-status recu';btn.textContent='✅ Reçu';}else{btn.className='rec-status attente';btn.textContent='⏳ En attente';} }
+// ── REC STATUS ────────────────────────────────────────────────────────────────
+const REC_KEYS=['implant','prgf','scraper','biooss','membrane','guide'];
+let recSt={implant:'attente',prgf:'attente',scraper:'attente',biooss:'attente',membrane:'attente',guide:'attente'};
+window.toggleRec=function(k){ recSt[k]=recSt[k]==='recu'?'attente':'recu'; updateRecBtn(k); };
+function updateRecBtn(k){ const btn=document.getElementById('rec-'+k); if(!btn)return; recSt[k]==='recu'?(btn.className='rec-status recu',btn.textContent='✅ Reçu'):(btn.className='rec-status attente',btn.textContent='⏳ En attente'); }
 function resetRecSt(){ REC_KEYS.forEach(k=>{ recSt[k]='attente'; updateRecBtn(k); }); }
 function loadRecSt(data){ if(!data)return; REC_KEYS.forEach(k=>{ recSt[k]=data[k]||'attente'; updateRecBtn(k); }); }
 
 // ── ACTES ─────────────────────────────────────────────────────────────────────
-const ACTES=['implant','prgf','rog','scrapper','versan','mectron','extraction','summers','biooss','membrane'];
-window.toggleAc = function(k){ const on=document.getElementById('ac-'+k).checked; document.getElementById('ar-'+k).classList.toggle('active',on); };
+const ACTES=['implant','prgf','guide','rog','scraper','versah','mectron','extraction','summers','biooss','membrane'];
+window.toggleAc=function(k){ const on=document.getElementById('ac-'+k).checked; document.getElementById('ar-'+k).classList.toggle('active',on); };
 function resetActes(){
   ACTES.forEach(k=>{ const cb=document.getElementById('ac-'+k); if(cb)cb.checked=false; document.getElementById('ar-'+k)?.classList.remove('active'); });
-  ['rog-note','scrapper-note','versan-note','mectron-note','prgf-note','ext-dents','ext-note','sum-dent','sum-note','biooss-note','mem-note'].forEach(id=>sv(id,''));
-  ['prgf-calcium','biooss-g','mem-ref','mem-taille'].forEach(id=>{ const el=document.getElementById(id); if(el)el.selectedIndex=0; });
+  ['rog-note','scraper-note','versah-note','mectron-note','prgf-note','ext-dents','ext-note','sum-dent','sum-note','biooss-note','mem-note','guide-note','guide-empreinte'].forEach(id=>sv(id,''));
+  ['prgf-calcium','biooss-ref','mem-ref','mem-taille','scraper-ref'].forEach(id=>{ const el=document.getElementById(id); if(el)el.selectedIndex=0; });
+  ['biooss-qte','mem-qte','scraper-qte'].forEach(id=>sv(id,1));
   document.getElementById('implants-list').innerHTML='';
   implantItems=[]; implantItemId=0;
 }
 
 // ── MULTI-IMPLANTS ────────────────────────────────────────────────────────────
 let implantItems=[], implantItemId=0;
-window.addImplantItem = function(data){
-  const iid=++implantItemId;
-  implantItems.push({iid});
+window.addImplantItem=function(data){
+  const iid=++implantItemId; implantItems.push({iid});
   const refs=Object.values(cache.implants).map(i=>`<option value="${i.id}">${i.nom}</option>`).join('');
   const div=document.createElement('div');
   div.className='implant-item'; div.id='impl-item-'+iid;
   div.innerHTML=`<button class="rem-btn" onclick="removeImplantItem(${iid})">✕</button>
     <div class="acte-details-row">
       <div class="adf"><label>Référence</label><select id="impl-ref-${iid}"><option value="">—</option>${refs}</select></div>
-      <div class="adf" style="max-width:75px"><label>Qté</label><input type="number" id="impl-qte-${iid}" value="1" min="1"></div>
+      <div class="adf" style="max-width:70px"><label>Qté</label><input type="number" id="impl-qte-${iid}" value="1" min="1"></div>
       <div class="adf"><label>N° dent</label><input type="text" id="impl-dent-${iid}" placeholder="ex: 16"></div>
-      <div class="adf"><label>Emplacement (texte)</label><input type="text" id="impl-loc-${iid}" placeholder="ex: maxillaire ant."></div>
+      <div class="adf"><label>Emplacement texte</label><input type="text" id="impl-loc-${iid}" placeholder="maxillaire ant."></div>
       <div class="adf"><label>Note</label><input type="text" id="impl-note-${iid}" placeholder="Ø, longueur…"></div>
     </div>`;
   document.getElementById('implants-list').appendChild(div);
   if(data){ sv('impl-ref-'+iid,data.ref); sv('impl-qte-'+iid,data.qte||1); sv('impl-dent-'+iid,data.dent||''); sv('impl-loc-'+iid,data.loc||''); sv('impl-note-'+iid,data.note||''); }
 };
-window.removeImplantItem = function(iid){ implantItems=implantItems.filter(x=>x.iid!==iid); document.getElementById('impl-item-'+iid)?.remove(); };
+window.removeImplantItem=function(iid){ implantItems=implantItems.filter(x=>x.iid!==iid); document.getElementById('impl-item-'+iid)?.remove(); };
 function collectImplants(){ return implantItems.map(({iid})=>({ ref:v('impl-ref-'+iid), qte:parseInt(v('impl-qte-'+iid))||1, dent:v('impl-dent-'+iid), loc:v('impl-loc-'+iid), note:v('impl-note-'+iid) })).filter(x=>x.ref||x.dent); }
 
-function populateStockSels(){ document.getElementById('mem-ref').innerHTML='<option value="">—</option>'+Object.values(cache.materiaux).filter(m=>m.categorie==='membrane').map(m=>`<option value="${m.id}">${m.nom} (stock: ${m.stock})</option>`).join(''); }
+function populateStockSels(){
+  const mems=Object.values(cache.materiaux).filter(m=>m.categorie==='membrane');
+  document.getElementById('mem-ref').innerHTML='<option value="">—</option>'+mems.map(m=>`<option value="${m.id}">${m.nom} (stock: ${m.stock})</option>`).join('');
+  const bioossList=Object.values(cache.materiaux).filter(m=>m.categorie==='comblement');
+  document.getElementById('biooss-ref').innerHTML='<option value="">—</option>'+bioossList.map(m=>`<option value="${m.id}">${m.nom} (stock: ${m.stock})</option>`).join('');
+  const scraperList=Object.values(cache.materiaux).filter(m=>m.categorie==='scapper');
+  document.getElementById('scraper-ref').innerHTML='<option value="">—</option>'+scraperList.map(m=>`<option value="${m.id}">${m.nom} (stock: ${m.stock})</option>`).join('');
+}
 
 function collectActes(){
   const a={};
-  function chk(k){ return document.getElementById('ac-'+k)?.checked; }
+  const chk=k=>document.getElementById('ac-'+k)?.checked;
   if(chk('implant')) a.implant={items:collectImplants(),recStatus:recSt.implant};
   if(chk('prgf')) a.prgf={calcium:v('prgf-calcium'),note:v('prgf-note'),recStatus:recSt.prgf};
+  if(chk('guide')) a.guide={empreinte:v('guide-empreinte'),note:v('guide-note'),recStatus:recSt.guide};
   if(chk('rog')) a.rog={note:v('rog-note')};
-  if(chk('scrapper')) a.scrapper={note:v('scrapper-note'),recStatus:recSt.scrapper};
-  if(chk('versan')) a.versan={note:v('versan-note')};
+  if(chk('scraper')) a.scraper={ref:v('scraper-ref'),qte:parseInt(v('scraper-qte'))||1,note:v('scraper-note'),recStatus:recSt.scraper};
+  if(chk('versah')) a.versah={note:v('versah-note')};
   if(chk('mectron')) a.mectron={note:v('mectron-note')};
   if(chk('extraction')) a.extraction={dents:v('ext-dents'),note:v('ext-note')};
   if(chk('summers')) a.summers={dent:v('sum-dent'),note:v('sum-note')};
-  if(chk('biooss')) a.biooss={grammage:v('biooss-g'),note:v('biooss-note'),recStatus:recSt.biooss};
-  if(chk('membrane')) a.membrane={ref:v('mem-ref'),taille:v('mem-taille'),note:v('mem-note'),recStatus:recSt.membrane};
+  if(chk('biooss')) a.biooss={ref:v('biooss-ref'),qte:parseInt(v('biooss-qte'))||1,note:v('biooss-note'),recStatus:recSt.biooss};
+  if(chk('membrane')) a.membrane={ref:v('mem-ref'),qte:parseInt(v('mem-qte'))||1,taille:v('mem-taille'),note:v('mem-note'),recStatus:recSt.membrane};
   return a;
 }
 
@@ -803,29 +751,30 @@ function populateActes(actes){
     const cb=document.getElementById('ac-'+k); if(!cb)return;
     cb.checked=true; document.getElementById('ar-'+k)?.classList.add('active');
     if(k==='prgf'){ sv('prgf-calcium',a.calcium); sv('prgf-note',a.note); }
+    if(k==='guide'){ sv('guide-empreinte',a.empreinte||''); sv('guide-note',a.note||''); }
     if(k==='rog') sv('rog-note',a.note);
-    if(k==='scrapper') sv('scrapper-note',a.note);
-    if(k==='versan') sv('versan-note',a.note);
+    if(k==='scraper'){ sv('scraper-ref',a.ref); sv('scraper-qte',a.qte||1); sv('scraper-note',a.note); }
+    if(k==='versah') sv('versah-note',a.note);
     if(k==='mectron') sv('mectron-note',a.note);
     if(k==='extraction'){ sv('ext-dents',a.dents); sv('ext-note',a.note); }
     if(k==='summers'){ sv('sum-dent',a.dent); sv('sum-note',a.note); }
-    if(k==='biooss'){ sv('biooss-g',a.grammage); sv('biooss-note',a.note); }
-    if(k==='membrane'){ sv('mem-ref',a.ref); sv('mem-taille',a.taille); sv('mem-note',a.note); }
+    if(k==='biooss'){ sv('biooss-ref',a.ref); sv('biooss-qte',a.qte||1); sv('biooss-note',a.note); }
+    if(k==='membrane'){ sv('mem-ref',a.ref); sv('mem-qte',a.qte||1); sv('mem-taille',a.taille); sv('mem-note',a.note); }
     if(k==='implant'&&a.items) a.items.forEach(item=>addImplantItem(item));
   });
   REC_KEYS.forEach(k=>{ if(actes[k]?.recStatus){ recSt[k]=actes[k].recStatus; updateRecBtn(k); } });
 }
 
 // ── IV FORM ──────────────────────────────────────────────────────────────────
-window.openNewIV = function(){ resetIVForm(); sv('iv-date',today()); populateStockSels(); openModal('modal-iv'); };
+window.openNewIV=function(){ resetIVForm(); sv('iv-date',today()); populateStockSels(); openModal('modal-iv'); };
 function resetIVForm(){
   sv('iv-id','');
   ['iv-date','iv-patient','iv-ddn','iv-allergies','iv-praticien','iv-nature','iv-dents','iv-notes'].forEach(id=>sv(id,''));
-  sv('iv-statut','planifiee'); sv('iv-guide','');
+  sv('iv-statut','planifiee');
   resetActes(); resetAdm(); resetRecSt();
 }
 
-window.saveIV = async function(){
+window.saveIV=async function(){
   const patient=v('iv-patient').trim(), date=v('iv-date'), nature=v('iv-nature').trim();
   if(!patient||!date||!nature){ alert('Date, patient et nature requis'); return; }
   const btn=document.getElementById('save-iv-btn');
@@ -833,13 +782,13 @@ window.saveIV = async function(){
   const ivid=v('iv-id')||genId('iv');
   const statut=v('iv-statut');
   const actes=collectActes();
-
-  // stock deduction
   const old=cache.interventions[ivid];
+
+  // Stock adjustment
   if(old&&old.statut==='realisee'&&statut!=='realisee') await adjustStock(old.actes,+1);
   if(statut==='realisee'&&(!old||old.statut!=='realisee')) await adjustStock(actes,-1);
 
-  const iv={ id:ivid,date,statut,patient,ddn:v('iv-ddn'),allergies:v('iv-allergies'),praticien:v('iv-praticien'),nature,dents:v('iv-dents'),guide:v('iv-guide'),actes,admin:{...admState},notes:v('iv-notes') };
+  const iv={ id:ivid,date,statut,patient,ddn:v('iv-ddn'),allergies:v('iv-allergies'),praticien:v('iv-praticien'),nature,dents:v('iv-dents'),actes,admin:{...admState},notes:v('iv-notes') };
   await fsSet('interventions',ivid,iv);
   btn.disabled=false; btn.textContent='Enregistrer';
   closeModal('modal-iv');
@@ -847,62 +796,64 @@ window.saveIV = async function(){
 
 async function adjustStock(actes,delta){
   if(!actes)return;
+  // Implants
   if(actes.implant?.items){
     for(const it of actes.implant.items){
       const imp=cache.implants[it.ref]; if(!imp)continue;
-      const newStock=Math.max(0,(imp.stock||0)+delta*(it.qte||1));
-      await fsSet('implants',it.ref,{...imp,stock:newStock});
+      await fsSet('implants',it.ref,{...imp,stock:Math.max(0,(imp.stock||0)+delta*(it.qte||1))});
     }
   }
+  // Membrane
   if(actes.membrane?.ref){
-    const m=cache.materiaux[actes.membrane.ref]; if(m){
-      await fsSet('materiaux',actes.membrane.ref,{...m,stock:Math.max(0,(m.stock||0)+delta)});
-    }
+    const m=cache.materiaux[actes.membrane.ref]; if(m)
+      await fsSet('materiaux',actes.membrane.ref,{...m,stock:Math.max(0,(m.stock||0)+delta*(actes.membrane.qte||1))});
+  }
+  // Bio-Oss
+  if(actes.biooss?.ref){
+    const m=cache.materiaux[actes.biooss.ref]; if(m)
+      await fsSet('materiaux',actes.biooss.ref,{...m,stock:Math.max(0,(m.stock||0)+delta*(actes.biooss.qte||1))});
+  }
+  // Scraper
+  if(actes.scraper?.ref){
+    const m=cache.materiaux[actes.scraper.ref]; if(m)
+      await fsSet('materiaux',actes.scraper.ref,{...m,stock:Math.max(0,(m.stock||0)+delta*(actes.scraper.qte||1))});
   }
 }
 
-window.editIV = function(id){
+window.editIV=function(id){
   const iv=cache.interventions[id]; if(!iv)return;
   resetIVForm(); populateStockSels();
   sv('iv-id',iv.id); sv('iv-date',iv.date); sv('iv-statut',iv.statut);
   sv('iv-patient',iv.patient); sv('iv-ddn',iv.ddn||''); sv('iv-allergies',iv.allergies||'');
   sv('iv-praticien',iv.praticien||''); sv('iv-nature',iv.nature); sv('iv-dents',iv.dents||'');
-  sv('iv-guide',iv.guide||''); sv('iv-notes',iv.notes||'');
+  sv('iv-notes',iv.notes||'');
   loadAdm(iv.admin); populateActes(iv.actes);
   openModal('modal-iv');
 };
-window.deleteIV = async function(id){ if(!confirm('Supprimer cette intervention ?'))return; await fsDel('interventions',id); };
+window.deleteIV=async function(id){ if(!confirm('Supprimer cette intervention ?'))return; await fsDel('interventions',id); };
 
 // ── RENDER HELPERS ────────────────────────────────────────────────────────────
 const SB={planifiee:'badge-blue',encours:'badge-orange',realisee:'badge-green',annulee:'badge-red'};
 const SL={planifiee:'Planifiée',encours:'En cours',realisee:'Réalisée',annulee:'Annulée'};
 const RC={planifiee:'row-planifiee',encours:'row-encours',realisee:'',annulee:''};
+const aLBL={implant:'Implant posé',prgf:'PRGF',guide:'Guide chirurgical',rog:'ROG',scraper:'Scraper',versah:'Versah',mectron:'Mectron',extraction:'Extraction',summers:'Summers',biooss:'Bio-Oss',membrane:'Membrane'};
 
 function implantSummary(iv){
   const items=iv.actes?.implant?.items;
   if(!items||!items.length)return '—';
-  return items.map(it=>{
-    const imp=cache.implants[it.ref];
-    const parts=[imp?.nom||'?'];
-    if(it.dent)parts.push('dent '+it.dent);
-    else if(it.loc)parts.push(it.loc);
-    if(it.qte>1)parts.push('×'+it.qte);
-    return parts.join(' ');
-  }).join('<br>');
+  return items.map(it=>{ const imp=cache.implants[it.ref]; const parts=[imp?.nom||'?']; if(it.dent)parts.push('dent '+it.dent); else if(it.loc)parts.push(it.loc); if(it.qte>1)parts.push('×'+it.qte); return parts.join(' '); }).join('<br>');
 }
+function ivArr(){ return Object.values(cache.interventions).sort((a,b)=>new Date(b.date)-new Date(a.date)); }
 
-function ivList(){ return Object.values(cache.interventions).sort((a,b)=>new Date(b.date)-new Date(a.date)); }
-
-// ── INTERVENTIONS ─────────────────────────────────────────────────────────────
+// ── INTERVENTIONS TABLE ───────────────────────────────────────────────────────
 let ivFilter='', ivTab='all';
-window.filterIV = function(val){ ivFilter=val; renderIV(); };
-window.setIVTab = function(tab,el){ ivTab=tab; document.querySelectorAll('#page-interventions .tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); renderIV(); };
-
+window.filterIV=function(val){ ivFilter=val; renderIV(); };
+window.setIVTab=function(tab,el){ ivTab=tab; document.querySelectorAll('#page-interventions .tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); renderIV(); };
 function renderIV(){
-  const tbody=document.getElementById('iv-table');
-  let list=ivList();
+  let list=ivArr();
   if(ivFilter){ const f=ivFilter.toLowerCase(); list=list.filter(iv=>(iv.patient+iv.nature+(iv.praticien||'')).toLowerCase().includes(f)); }
   if(ivTab!=='all') list=list.filter(iv=>iv.statut===ivTab);
+  const tbody=document.getElementById('iv-table');
   if(!list.length){ tbody.innerHTML=`<tr><td colspan="8" style="text-align:center;color:var(--text2);padding:32px">Aucune intervention</td></tr>`; return; }
   tbody.innerHTML=list.map(iv=>{
     const allCell=iv.allergies?`<span style="color:var(--red);font-size:12px;font-weight:500">⚠️ ${iv.allergies.length>18?iv.allergies.slice(0,18)+'…':iv.allergies}</span>`:'<span style="color:var(--text2)">—</span>';
@@ -919,182 +870,168 @@ function renderIV(){
   }).join('');
 }
 
-// ── AGENDA ────────────────────────────────────────────────────────────────────
-let agTab='upcoming';
-window.setAgTab = function(tab,el){ agTab=tab; document.querySelectorAll('#page-agenda .tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); renderAg(tab); };
-function renderAg(tab){
-  agTab=tab;
-  const t=today();
-  let list=ivList();
-  if(tab==='upcoming') list=list.filter(x=>x.statut==='planifiee'&&x.date>=t);
-  else if(tab==='encours') list=list.filter(x=>x.statut==='encours');
-  else if(tab==='done') list=list.filter(x=>x.statut==='realisee');
-  list.sort((a,b)=>new Date(a.date)-new Date(b.date));
-  const tbody=document.getElementById('ag-table');
-  if(!list.length){ tbody.innerHTML=`<tr><td colspan="8" style="text-align:center;color:var(--text2);padding:32px">Aucune chirurgie dans cette catégorie</td></tr>`; return; }
-  tbody.innerHTML=list.map(iv=>{
-    const allCell=iv.allergies?`<span style="color:var(--red);font-weight:500;font-size:12px">⚠️ ${iv.allergies}</span>`:'<span style="color:var(--text2)">—</span>';
-    return `<tr class="${RC[iv.statut]||''}">
-      <td><strong>${iv.date}</strong></td><td>${iv.patient}</td><td>${iv.nature}</td>
-      <td style="font-size:12px;line-height:1.5">${implantSummary(iv)}</td>
-      <td>${allCell}</td><td>${iv.praticien||'—'}</td>
-      <td><span class="badge ${SB[iv.statut]||'badge-gray'}">${SL[iv.statut]||iv.statut}</span></td>
-      <td style="white-space:nowrap">
-        <button class="btn btn-secondary btn-sm" onclick="showFiche('${iv.id}')">Fiche</button>
-        <button class="btn btn-secondary btn-sm" onclick="editIV('${iv.id}')" style="margin-left:3px">✏️</button>
-      </td></tr>`;
-  }).join('');
+// ── CALENDRIER ────────────────────────────────────────────────────────────────
+let calYear=new Date().getFullYear(), calMonth=new Date().getMonth();
+window.calPrev=function(){ calMonth--; if(calMonth<0){calMonth=11;calYear--;} renderCal(); };
+window.calNext=function(){ calMonth++; if(calMonth>11){calMonth=0;calYear++;} renderCal(); };
+window.calToday=function(){ calYear=new Date().getFullYear(); calMonth=new Date().getMonth(); renderCal(); };
+
+function renderCal(){
+  const monthNames=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  const dayNames=['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+  document.getElementById('cal-month-title').textContent=monthNames[calMonth]+' '+calYear;
+
+  // Day name headers
+  document.getElementById('cal-day-names').innerHTML=dayNames.map(d=>`<div class="cal-day-name">${d}</div>`).join('');
+
+  // Build calendar grid (Monday-first)
+  const firstDay=new Date(calYear,calMonth,1);
+  let startDow=firstDay.getDay(); // 0=Sun
+  startDow=(startDow===0)?6:startDow-1; // convert to Mon=0
+  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  const daysInPrev=new Date(calYear,calMonth,0).getDate();
+  const todayStr=today();
+
+  // Group interventions by date
+  const ivByDate={};
+  Object.values(cache.interventions).forEach(iv=>{
+    if(!ivByDate[iv.date]) ivByDate[iv.date]=[];
+    ivByDate[iv.date].push(iv);
+  });
+
+  let cells='';
+  const totalCells=Math.ceil((startDow+daysInMonth)/7)*7;
+  for(let i=0;i<totalCells;i++){
+    let dayNum, dateStr, isOther=false;
+    if(i<startDow){ dayNum=daysInPrev-startDow+i+1; const d=new Date(calYear,calMonth-1,dayNum); dateStr=d.toISOString().slice(0,10); isOther=true; }
+    else if(i>=startDow+daysInMonth){ dayNum=i-startDow-daysInMonth+1; const d=new Date(calYear,calMonth+1,dayNum); dateStr=d.toISOString().slice(0,10); isOther=true; }
+    else{ dayNum=i-startDow+1; dateStr=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(dayNum).padStart(2,'0')}`; }
+
+    const isToday=dateStr===todayStr;
+    const ivs=ivByDate[dateStr]||[];
+    const eventsHtml=ivs.map(iv=>`<div class="cal-event ${iv.statut}" title="${iv.patient} — ${iv.nature}" onclick="showFiche('${iv.id}')">${iv.patient.split(' ')[0]}</div>`).join('');
+
+    cells+=`<div class="cal-cell${isOther?' other-month':''}${isToday?' today':''}">
+      <div class="cal-cell-num">${dayNum}</div>
+      ${eventsHtml}
+    </div>`;
+  }
+  document.getElementById('cal-cells').innerHTML=cells;
 }
 
-// ── FICHE PDF ─────────────────────────────────────────────────────────────────
-const aLBL={implant:'Implant posé',prgf:'PRGF',rog:'ROG',scrapper:'Scrapper',versan:'Versan',mectron:'Mectron',extraction:'Extraction',summers:'Summers',biooss:'Bio-Oss',membrane:'Membrane'};
-
-window.showFiche = function(id){
-  const iv=cache.interventions[id]; if(!iv)return;
-  document.getElementById('fiche-titre').textContent=`${iv.patient} — ${iv.date}`;
-  document.getElementById('fiche-content').innerHTML=buildFicheHTML(iv);
-  openModal('modal-fiche');
-};
-
+// ── FICHE ─────────────────────────────────────────────────────────────────────
 function buildFicheHTML(iv){
   const adm=iv.admin||{};
   const admRows=['conebeam','devis','consentement'].map(f=>{
-    const labels={conebeam:'Cone beam reçu',devis:'Devis signé',consentement:'Consentement signé'};
+    const lbl={conebeam:'Cone beam reçu',devis:'Devis signé',consentement:'Consentement signé'}[f];
     const val=adm[f]; const col=val==='oui'?'var(--green)':val==='non'?'var(--red)':'var(--text2)';
-    const txt=val==='oui'?'✅ Oui':val==='non'?'❌ Non':'— Non renseigné';
-    return `<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--surface2)"><span style="font-size:13px">${labels[f]}</span><span style="font-size:13px;font-weight:600;color:${col}">${txt}</span></div>`;
+    return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--surface2)"><span>${lbl}</span><strong style="color:${col}">${val==='oui'?'✅ Oui':val==='non'?'❌ Non':'— Non renseigné'}</strong></div>`;
   }).join('');
-
   const actes=iv.actes||{};
-  const actesRows=Object.keys(actes).map(k=>{
+  const actesHTML=Object.keys(actes).length===0?'<p style="color:var(--text2)">Aucun acte</p>':Object.keys(actes).map(k=>{
     const a=actes[k]; let detail='';
-    if(k==='implant'&&a.items) detail=a.items.map(it=>{ const imp=cache.implants[it.ref]; const parts=[imp?.nom||'?']; if(it.dent)parts.push('dent '+it.dent); if(it.loc)parts.push(it.loc); if(it.qte>1)parts.push('×'+it.qte); if(it.note)parts.push(it.note); return parts.join(' — '); }).join('<br>');
-    else if(k==='prgf') detail=(a.calcium==='avec'?'Avec calcium':'Sans calcium')+(a.note?' — '+a.note:'');
+    if(k==='implant'&&a.items) detail=a.items.map(it=>{ const imp=cache.implants[it.ref]; const p=[imp?.nom||'?']; if(it.dent)p.push('dent '+it.dent); if(it.loc)p.push(it.loc); if(it.qte>1)p.push('×'+it.qte); if(it.note)p.push(it.note); return p.join(' — '); }).join('<br>');
+    else if(k==='prgf') detail=(a.calcium==='avec'?'Avec':'Sans')+' calcium'+(a.note?' — '+a.note:'');
+    else if(k==='guide'){ detail=''; if(a.empreinte)detail='Empreinte le '+a.empreinte; if(a.note)detail+=(detail?' — ':'')+a.note; }
     else if(k==='extraction') detail=a.dents?'Dents: '+a.dents:'';
     else if(k==='summers') detail=a.dent?'Site: '+a.dent:'';
-    else if(k==='biooss') detail=[a.grammage,a.note].filter(Boolean).join(' — ');
-    else if(k==='membrane'){ const m=cache.materiaux[a.ref]; detail=[m?.nom,a.taille,a.note].filter(Boolean).join(' — '); }
+    else if(k==='biooss'){ const m=cache.materiaux[a.ref]; detail=[m?.nom,a.qte&&a.qte>1?'×'+a.qte:null,a.note].filter(Boolean).join(' — '); }
+    else if(k==='scraper'){ const m=cache.materiaux[a.ref]; detail=[m?.nom,a.qte&&a.qte>1?'×'+a.qte:null,a.note].filter(Boolean).join(' — '); }
+    else if(k==='membrane'){ const m=cache.materiaux[a.ref]; detail=[m?.nom,a.qte&&a.qte>1?'×'+a.qte:null,a.taille,a.note].filter(Boolean).join(' — '); }
     else if(a.note) detail=a.note;
-    const recB=a.recStatus?`<span class="badge ${a.recStatus==='recu'?'badge-green':'badge-amber'}" style="margin-left:8px">${a.recStatus==='recu'?'✅ Reçu':'⏳ En attente'}</span>`:'';
-    return `<div style="padding:8px 0;border-bottom:1px solid var(--surface2)"><div style="display:flex;align-items:center;gap:7px;margin-bottom:${detail?'4px':'0'}"><span class="badge badge-blue">${aLBL[k]||k}</span>${recB}</div>${detail?`<div style="font-size:12.5px;color:var(--text2);margin-top:3px">${detail}</div>`:''}</div>`;
+    const recB=a.recStatus?`<span class="badge ${a.recStatus==='recu'?'badge-green':'badge-amber'}" style="margin-left:7px">${a.recStatus==='recu'?'✅ Reçu':'⏳ En attente'}</span>`:'';
+    return `<div style="padding:8px 0;border-bottom:1px solid var(--surface2)"><div style="display:flex;align-items:center;gap:7px;margin-bottom:${detail?'3px':'0'}"><span class="badge badge-blue">${aLBL[k]||k}</span>${recB}</div>${detail?`<div style="font-size:12.5px;color:var(--text2)">${detail}</div>`:''}</div>`;
   }).join('');
 
-  return `
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-      <span class="badge ${SB[iv.statut]||'badge-gray'}" style="font-size:13px">${SL[iv.statut]||iv.statut}</span>
-      ${iv.guide?`<span style="font-size:12px;color:var(--text2)">Guide chirurgical : <strong>${iv.guide}</strong></span>`:''}
-    </div>
+  return `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><span class="badge ${SB[iv.statut]}" style="font-size:13px">${SL[iv.statut]}</span></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;margin-bottom:14px">
-      ${[['Patient',iv.patient],['Date de naissance',iv.ddn||'—'],['Praticien référant',iv.praticien||'—'],['Allergies',iv.allergies||'Aucune connue'],['Nature intervention',iv.nature],['Emplacement / Dent(s)',iv.dents||'—']].map(([k,val])=>`<div style="padding:8px 0;border-bottom:1px solid var(--surface2);${k==='Praticien référant'||k==='Emplacement / Dent(s)'?'':'padding-right:16px'}"><div style="font-size:10.5px;font-family:'DM Mono',monospace;text-transform:uppercase;color:var(--text2);letter-spacing:.04em">${k}</div><div style="font-size:13.5px;margin-top:2px;font-weight:500;${k==='Allergies'&&iv.allergies?'color:var(--red)':''}">${val}</div></div>`).join('')}
+      ${[['Patient',iv.patient],['Date de naissance',iv.ddn||'—'],['Praticien référant',iv.praticien||'—'],['Allergies',iv.allergies||'Aucune connue'],['Nature intervention',iv.nature],['Emplacement / Dent(s)',iv.dents||'—']].map(([k,val])=>`<div style="padding:8px 0;border-bottom:1px solid var(--surface2);${k==='Patient'||k==='Praticien référant'||k==='Nature intervention'?'padding-right:16px':''}"><div style="font-size:10px;font-family:'DM Mono',monospace;text-transform:uppercase;color:var(--text2);letter-spacing:.04em">${k}</div><div style="font-size:13.5px;margin-top:2px;font-weight:500;${k==='Allergies'&&iv.allergies?'color:var(--red)':''}">${val}</div></div>`).join('')}
     </div>
-    <div style="font-size:10px;font-family:'DM Mono',monospace;text-transform:uppercase;color:var(--text2);margin-bottom:8px;letter-spacing:.05em">Volet administratif</div>
+    <div style="font-size:10px;font-family:'DM Mono',monospace;text-transform:uppercase;color:var(--text2);margin-bottom:7px">Volet administratif</div>
     <div style="background:var(--surface2);border-radius:8px;padding:8px 14px;margin-bottom:14px">${admRows}</div>
-    <div style="font-size:10px;font-family:'DM Mono',monospace;text-transform:uppercase;color:var(--text2);margin-bottom:8px;letter-spacing:.05em">Actes réalisés</div>
-    <div style="margin-bottom:14px">${actesRows||'<p style="color:var(--text2)">Aucun acte</p>'}</div>
-    ${iv.notes?`<div><div style="font-size:10px;font-family:'DM Mono',monospace;text-transform:uppercase;color:var(--text2);margin-bottom:6px;letter-spacing:.05em">Notes</div><div style="background:var(--surface2);padding:11px;border-radius:7px;font-size:13px;line-height:1.6">${iv.notes}</div></div>`:''}`;
+    <div style="font-size:10px;font-family:'DM Mono',monospace;text-transform:uppercase;color:var(--text2);margin-bottom:7px">Actes réalisés</div>
+    <div style="margin-bottom:14px">${actesHTML}</div>
+    ${iv.notes?`<div><div style="font-size:10px;font-family:'DM Mono',monospace;text-transform:uppercase;color:var(--text2);margin-bottom:5px">Notes</div><div style="background:var(--surface2);padding:10px;border-radius:7px;font-size:13px;line-height:1.6">${iv.notes}</div></div>`:''}`;
 }
 
-let currentFicheIV=null;
-window.printFicheModal = function(){
-  const id=document.getElementById('fiche-titre').dataset.ivid;
-  if(id) printFicheById(id);
-};
-window.printCurrentFiche = function(){
-  const id=v('iv-id');
-  if(id) printFicheById(id);
-  else{ alert('Enregistrez d\'abord la fiche avant d\'imprimer.'); }
-};
-function printFicheById(id){
-  const iv=cache.interventions[id]; if(!iv)return;
-  const area=document.getElementById('pdf-print-area');
-  area.innerHTML=`<div style="padding:20px;font-family:'DM Sans',sans-serif">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;border-bottom:2px solid #1A3D5C;padding-bottom:12px">
-      <div><h1 style="font-family:'DM Serif Display',serif;font-size:22px;color:#1A3D5C">Dr Pungs — Fiche Intervention</h1></div>
-      <div style="font-size:12px;color:#6B6560">Imprimé le ${new Date().toLocaleDateString('fr-FR')}</div>
-    </div>
-    ${buildFicheHTML(iv)}
-  </div>`;
-  window.print();
-}
-
-window.showFiche = function(id){
+window.showFiche=function(id){
   const iv=cache.interventions[id]; if(!iv)return;
   document.getElementById('fiche-titre').textContent=`${iv.patient} — ${iv.date}`;
   document.getElementById('fiche-titre').dataset.ivid=id;
   document.getElementById('fiche-content').innerHTML=buildFicheHTML(iv);
   openModal('modal-fiche');
 };
+window.printFicheModal=function(){ const id=document.getElementById('fiche-titre').dataset.ivid; if(id) printById(id); };
+window.printCurrentFiche=function(){ const id=v('iv-id'); if(id) printById(id); else alert('Enregistrez d\'abord la fiche.'); };
+function printById(id){
+  const iv=cache.interventions[id]; if(!iv)return;
+  document.getElementById('pdf-print-area').innerHTML=`<div style="padding:20px;font-family:'DM Sans',sans-serif"><div style="display:flex;justify-content:space-between;border-bottom:2px solid #1A3D5C;padding-bottom:10px;margin-bottom:16px"><h1 style="font-family:'DM Serif Display',serif;font-size:20px;color:#1A3D5C">Dr Pungs — Fiche Intervention</h1><span style="font-size:12px;color:#6B6560">Imprimé le ${new Date().toLocaleDateString('fr-FR')}</span></div>${buildFicheHTML(iv)}</div>`;
+  window.print();
+}
 
 // ── STOCKS RECAP ──────────────────────────────────────────────────────────────
-window.renderStocksRecap = function(){
+window.renderStocksRecap=function(){
   const t=today();
   const upcoming=Object.values(cache.interventions).filter(x=>(x.statut==='planifiee'||x.statut==='encours')&&x.date>=t).sort((a,b)=>new Date(a.date)-new Date(b.date));
   const cont=document.getElementById('stocks-recap-content');
-  if(!upcoming.length){ cont.innerHTML=`<div class="card"><p style="color:var(--text2);text-align:center;padding:32px">Aucune intervention planifiée ou en cours.</p></div>`; return; }
+  if(!upcoming.length){cont.innerHTML=`<div class="card"><p style="color:var(--text2);text-align:center;padding:32px">Aucune intervention planifiée ou en cours.</p></div>`;return;}
 
-  const impNeeds={};
-  const memNeeds={};
-  const warnings=[];
+  const impNeeds={}, memNeeds={}, bioossNeeds={}, scraperNeeds={};
+  const warns=[];
 
   upcoming.forEach(iv=>{
     (iv.actes?.implant?.items||[]).forEach(it=>{
       if(!it.ref)return;
-      if(!impNeeds[it.ref]){ const i=cache.implants[it.ref]; impNeeds[it.ref]={nom:i?.nom||'?',needed:0,stock:i?.stock||0,uses:[]}; }
+      if(!impNeeds[it.ref]){const i=cache.implants[it.ref];impNeeds[it.ref]={nom:i?.nom||'?',needed:0,stock:i?.stock||0};}
       impNeeds[it.ref].needed+=(it.qte||1);
-      impNeeds[it.ref].uses.push({date:iv.date,patient:iv.patient,dent:it.dent,loc:it.loc,qte:it.qte||1});
     });
-    if(iv.actes?.membrane?.ref){
-      const rid=iv.actes.membrane.ref;
-      if(!memNeeds[rid]){ const m=cache.materiaux[rid]; memNeeds[rid]={nom:m?.nom||'?',needed:0,stock:m?.stock||0,uses:[]}; }
-      memNeeds[rid].needed++;
-      memNeeds[rid].uses.push({date:iv.date,patient:iv.patient});
-    }
+    if(iv.actes?.membrane?.ref){const rid=iv.actes.membrane.ref;if(!memNeeds[rid]){const m=cache.materiaux[rid];memNeeds[rid]={nom:m?.nom||'?',needed:0,stock:m?.stock||0};}memNeeds[rid].needed+=(iv.actes.membrane.qte||1);}
+    if(iv.actes?.biooss?.ref){const rid=iv.actes.biooss.ref;if(!bioossNeeds[rid]){const m=cache.materiaux[rid];bioossNeeds[rid]={nom:m?.nom||'?',needed:0,stock:m?.stock||0};}bioossNeeds[rid].needed+=(iv.actes.biooss.qte||1);}
+    if(iv.actes?.scraper?.ref){const rid=iv.actes.scraper.ref;if(!scraperNeeds[rid]){const m=cache.materiaux[rid];scraperNeeds[rid]={nom:m?.nom||'?',needed:0,stock:m?.stock||0};}scraperNeeds[rid].needed+=(iv.actes.scraper.qte||1);}
   });
 
-  Object.entries(impNeeds).forEach(([rid,n])=>{ if(n.stock<n.needed) warnings.push(`Implant "${n.nom}" : stock ${n.stock} disponible — besoin ${n.needed}`); });
-  Object.entries(memNeeds).forEach(([rid,n])=>{ if(n.stock<n.needed) warnings.push(`Membrane "${n.nom}" : stock ${n.stock} — besoin ${n.needed}`); });
+  Object.entries(impNeeds).forEach(([r,n])=>{if(n.stock<n.needed)warns.push(`Implant "${n.nom}" : stock ${n.stock} — besoin ${n.needed}`);});
+  Object.entries(memNeeds).forEach(([r,n])=>{if(n.stock<n.needed)warns.push(`Membrane "${n.nom}" : stock ${n.stock} — besoin ${n.needed}`);});
+  Object.entries(bioossNeeds).forEach(([r,n])=>{if(n.stock<n.needed)warns.push(`Bio-Oss "${n.nom}" : stock ${n.stock} — besoin ${n.needed}`);});
+  Object.entries(scraperNeeds).forEach(([r,n])=>{if(n.stock<n.needed)warns.push(`Scraper "${n.nom}" : stock ${n.stock} — besoin ${n.needed}`);});
 
-  let html='';
-  if(warnings.length){ html+=warnings.map(w=>`<div class="alert-red">🚨 ${w}</div>`).join(''); }
-  else{ html+=`<div class="alert-ok">✅ Tous les stocks sont suffisants pour les interventions à venir.</div>`; }
+  let html=warns.length?warns.map(w=>`<div class="alert-red">🚨 ${w}</div>`).join(''):`<div class="alert-ok">✅ Tous les stocks suffisants pour les interventions à venir.</div>`;
 
   html+=`<div class="card" style="margin-bottom:16px"><div class="card-title">Besoins par intervention</div>`;
   upcoming.forEach(iv=>{
     const actes=iv.actes||{};
     html+=`<div style="border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;${iv.statut==='encours'?'border-left:4px solid var(--orange);background:#FFF7ED':''}">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-        <div><strong>${iv.date}</strong> — ${iv.patient} <span style="color:var(--text2);font-size:12px">${iv.nature}</span></div>
-        <span class="badge ${SB[iv.statut]||'badge-gray'}">${SL[iv.statut]||iv.statut}</span>
-      </div>`;
-    if(!Object.keys(actes).length){ html+=`<div style="color:var(--text2);font-size:12.5px">Aucun acte renseigné</div>`; }
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px"><div><strong>${iv.date}</strong> — ${iv.patient} <span style="color:var(--text2);font-size:12px">${iv.nature}</span></div><span class="badge ${SB[iv.statut]}">${SL[iv.statut]}</span></div>`;
+    if(!Object.keys(actes).length){html+=`<div style="color:var(--text2);font-size:12px">Aucun acte renseigné</div>`;}
     else{
-      (actes.implant?.items||[]).forEach(it=>{
-        const imp=cache.implants[it.ref]; const ok=imp&&imp.stock>=(it.qte||1);
-        html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🔩 Implant${it.dent?' dent '+it.dent:it.loc?' '+it.loc:''}</div><div style="font-size:11.5px;color:var(--text2)">${imp?.nom||'?'} × ${it.qte||1}</div></div><div style="text-align:right"><span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ Stock OK':'❌ Insuffisant'}</span><div style="font-size:11px;color:var(--text2)">Dispo: ${imp?.stock??'?'}</div></div></div>`;
-      });
-      if(actes.biooss) html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🧱 Bio-Oss</div><div style="font-size:11.5px;color:var(--text2)">${actes.biooss.grammage||''} ${actes.biooss.note||''}</div></div><div><span class="badge ${actes.biooss.recStatus==='recu'?'badge-green':'badge-amber'}">${actes.biooss.recStatus==='recu'?'✅ Reçu':'⏳ En attente'}</span></div></div>`;
-      if(actes.membrane){ const m=cache.materiaux[actes.membrane.ref]; const ok=m&&m.stock>=1; html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🫧 Membrane</div><div style="font-size:11.5px;color:var(--text2)">${m?.nom||'?'} ${actes.membrane.taille||''}</div></div><div style="text-align:right"><span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span><div style="font-size:11px;color:var(--text2)">Dispo: ${m?.stock??'?'}</div></div></div>`; }
-      if(actes.prgf) html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">💉 PRGF</div><div style="font-size:11.5px;color:var(--text2)">${actes.prgf.calcium==='avec'?'Avec calcium':'Sans calcium'}</div></div><div><span class="badge ${actes.prgf.recStatus==='recu'?'badge-green':'badge-amber'}">${actes.prgf.recStatus==='recu'?'✅ Reçu':'⏳ En attente'}</span></div></div>`;
-      if(actes.scrapper) html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🔧 Scrapper</div></div><div><span class="badge ${actes.scrapper.recStatus==='recu'?'badge-green':'badge-amber'}">${actes.scrapper.recStatus==='recu'?'✅ Reçu':'⏳ En attente'}</span></div></div>`;
+      (actes.implant?.items||[]).forEach(it=>{const imp=cache.implants[it.ref];const ok=imp&&imp.stock>=(it.qte||1);html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🔩 Implant${it.dent?' dent '+it.dent:it.loc?' '+it.loc:''}</div><div style="font-size:11.5px;color:var(--text2)">${imp?.nom||'?'} × ${it.qte||1}</div></div><div style="text-align:right"><span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span><div style="font-size:11px;color:var(--text2)">Dispo: ${imp?.stock??'?'}</div></div></div>`;});
+      if(actes.biooss){const m=cache.materiaux[actes.biooss.ref];const ok=m&&m.stock>=(actes.biooss.qte||1);html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🧱 Bio-Oss</div><div style="font-size:11.5px;color:var(--text2)">${m?.nom||'?'} × ${actes.biooss.qte||1} ${actes.biooss.note||''}</div></div><div style="text-align:right"><span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span><div style="font-size:11px;color:var(--text2)">Dispo: ${m?.stock??'?'}</div><span class="badge ${actes.biooss.recStatus==='recu'?'badge-green':'badge-amber'}">${actes.biooss.recStatus==='recu'?'Reçu':'En attente'}</span></div></div>`;}
+      if(actes.membrane){const m=cache.materiaux[actes.membrane.ref];const ok=m&&m.stock>=(actes.membrane.qte||1);html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🫧 Membrane</div><div style="font-size:11.5px;color:var(--text2)">${m?.nom||'?'} × ${actes.membrane.qte||1} ${actes.membrane.taille||''}</div></div><div style="text-align:right"><span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span><div style="font-size:11px;color:var(--text2)">Dispo: ${m?.stock??'?'}</div><span class="badge ${actes.membrane.recStatus==='recu'?'badge-green':'badge-amber'}">${actes.membrane.recStatus==='recu'?'Reçu':'En attente'}</span></div></div>`;}
+      if(actes.scraper){const m=cache.materiaux[actes.scraper.ref];const ok=m&&m.stock>=(actes.scraper.qte||1);html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🔧 Scraper</div><div style="font-size:11.5px;color:var(--text2)">${m?.nom||'?'} × ${actes.scraper.qte||1}</div></div><div style="text-align:right"><span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span><div style="font-size:11px;color:var(--text2)">Dispo: ${m?.stock??'?'}</div><span class="badge ${actes.scraper.recStatus==='recu'?'badge-green':'badge-amber'}">${actes.scraper.recStatus==='recu'?'Reçu':'En attente'}</span></div></div>`;}
+      if(actes.prgf)html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">💉 PRGF</div><div style="font-size:11.5px;color:var(--text2)">${actes.prgf.calcium==='avec'?'Avec calcium':'Sans calcium'}</div></div><div><span class="badge ${actes.prgf.recStatus==='recu'?'badge-green':'badge-amber'}">${actes.prgf.recStatus==='recu'?'✅ Reçu':'⏳ En attente'}</span></div></div>`;
+      if(actes.guide)html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">📐 Guide chirurgical</div>${actes.guide.empreinte?`<div style="font-size:11.5px;color:var(--text2)">Empreinte le ${actes.guide.empreinte}</div>`:''}</div><div><span class="badge ${actes.guide.recStatus==='recu'?'badge-green':'badge-amber'}">${actes.guide.recStatus==='recu'?'✅ Reçu':'⏳ En attente'}</span></div></div>`;
     }
     html+=`</div>`;
   });
   html+=`</div>`;
 
-  if(Object.keys(impNeeds).length){
-    html+=`<div class="card"><div class="card-title">🔩 Récap global implants</div>`;
-    Object.entries(impNeeds).forEach(([rid,n])=>{
+  // Global summaries
+  const allNeeds=[['🔩 Implants',impNeeds],['🫧 Membranes',memNeeds],['🧱 Bio-Oss',bioossNeeds],['🔧 Scrapers',scraperNeeds]];
+  allNeeds.forEach(([title,needs])=>{
+    if(!Object.keys(needs).length)return;
+    html+=`<div class="card" style="margin-bottom:14px"><div class="card-title">${title} — récap global</div>`;
+    Object.entries(needs).forEach(([rid,n])=>{
       const pct=Math.min(100,Math.round(n.stock/Math.max(n.needed,1)*100));
       const col=n.stock>=n.needed?'var(--green)':n.stock>0?'var(--orange)':'var(--red)';
       html+=`<div class="stock-recap-row"><div><div style="font-weight:500">${n.nom}</div><div style="font-size:11.5px;color:var(--text2)">Besoin: ${n.needed} — Stock: ${n.stock}</div></div><div style="text-align:right;min-width:110px"><span style="font-size:15px;font-weight:700;color:${col}">${n.stock} / ${n.needed}</span><div class="stock-bar-bg" style="width:110px"><div class="stock-bar-fill" style="width:${pct}%;background:${col}"></div></div></div></div>`;
     });
     html+=`</div>`;
-  }
+  });
   cont.innerHTML=html;
 };
 
 // ── IMPLANTS ──────────────────────────────────────────────────────────────────
-window.saveImplant = async function(){
+window.saveImplant=async function(){
   const nom=v('ti-nom').trim(); if(!nom){alert('Nom requis');return;}
   const tid=v('ti-id')||genId('imp');
   await fsSet('implants',tid,{id:tid,nom,marque:v('ti-marque'),stock:parseInt(v('ti-stock'))||0,seuil:parseInt(v('ti-seuil'))||3,note:v('ti-note')});
@@ -1102,8 +1039,7 @@ window.saveImplant = async function(){
 };
 function renderImplants(){
   const items=Object.values(cache.implants);
-  const cont=document.getElementById('imp-grid');
-  const alDiv=document.getElementById('imp-alerts');
+  const cont=document.getElementById('imp-grid'), alDiv=document.getElementById('imp-alerts');
   const low=items.filter(i=>i.stock<=i.seuil);
   alDiv.innerHTML=low.length?`<div class="alert-banner">⚠️ <strong>${low.length}</strong> référence(s) sous le seuil : ${low.map(i=>i.nom).join(', ')}</div>`:'';
   if(!items.length){cont.innerHTML=`<div style="text-align:center;padding:48px;color:var(--text2)"><div style="font-size:36px">🔩</div><p>Aucune référence d'implant.</p></div>`;return;}
@@ -1113,22 +1049,21 @@ function renderImplants(){
     return `<div class="card"><div style="display:flex;justify-content:space-between;margin-bottom:7px"><div><div style="font-weight:600">${i.nom}</div>${i.marque?`<div style="font-size:11.5px;color:var(--text2)">${i.marque}</div>`:''}</div><div style="display:flex;gap:3px"><button class="btn btn-secondary btn-sm" onclick="editImplant('${i.id}')">✏️</button><button class="btn btn-danger btn-sm" onclick="delImplant('${i.id}')">🗑</button></div></div><div style="display:flex;align-items:baseline;gap:7px;margin-bottom:5px"><span style="font-size:26px;font-family:'DM Serif Display',serif;color:${col}">${i.stock}</span><span style="font-size:11.5px;color:var(--text2)">en stock — seuil : ${i.seuil}</span></div><div class="stock-bar-bg"><div class="stock-bar-fill" style="width:${pct}%;background:${col}"></div></div>${i.note?`<div style="margin-top:7px;font-size:11.5px;color:var(--text2)">${i.note}</div>`:''}</div>`;
   }).join('')+`</div>`;
 }
-window.editImplant = function(id){ const i=cache.implants[id]; sv('ti-id',i.id); sv('ti-nom',i.nom); sv('ti-marque',i.marque||''); sv('ti-stock',i.stock); sv('ti-seuil',i.seuil); sv('ti-note',i.note||''); openModal('modal-implant'); };
-window.delImplant = async function(id){ if(!confirm('Supprimer ?'))return; await fsDel('implants',id); };
+window.editImplant=function(id){const i=cache.implants[id];sv('ti-id',i.id);sv('ti-nom',i.nom);sv('ti-marque',i.marque||'');sv('ti-stock',i.stock);sv('ti-seuil',i.seuil);sv('ti-note',i.note||'');openModal('modal-implant');};
+window.delImplant=async function(id){if(!confirm('Supprimer ?'))return;await fsDel('implants',id);};
 
 // ── MATERIAUX ──────────────────────────────────────────────────────────────────
-const catL={comblement:'Comblement osseux',membrane:'Membrane',scapper:'Scapper',autre:'Autre'};
+const catL={comblement:'Comblement osseux',membrane:'Membrane',scapper:'Scraper',autre:'Autre'};
 const catBg={comblement:'#D1FAE5',membrane:'#DBEAFE',scapper:'#FEF3C7',autre:'#F3F4F6'};
 const catTx={comblement:'#065F46',membrane:'#1E40AF',scapper:'#92400E',autre:'#374151'};
-window.saveMateriau = async function(){
+window.saveMateriau=async function(){
   const nom=v('tm-nom').trim(); if(!nom){alert('Nom requis');return;}
   const tid=v('tm-id')||genId('mat');
   await fsSet('materiaux',tid,{id:tid,nom,categorie:v('tm-cat'),marque:v('tm-marque'),stock:parseInt(v('tm-stock'))||0,seuil:parseInt(v('tm-seuil'))||2,unite:v('tm-unite')||'unité'});
   closeModal('modal-materiau');
 };
 function renderMat(){
-  const cont=document.getElementById('mat-grid');
-  const alDiv=document.getElementById('mat-alerts');
+  const cont=document.getElementById('mat-grid'), alDiv=document.getElementById('mat-alerts');
   const all=Object.values(cache.materiaux);
   const low=all.filter(m=>m.stock<=m.seuil);
   alDiv.innerHTML=low.length?`<div class="alert-banner">⚠️ <strong>${low.length}</strong> produit(s) sous le seuil : ${low.map(m=>m.nom).join(', ')}</div>`:'';
@@ -1146,22 +1081,20 @@ function renderMat(){
   });
   cont.innerHTML=html;
 }
-window.editMat = function(id){ const m=cache.materiaux[id]; sv('tm-id',m.id); sv('tm-nom',m.nom); sv('tm-cat',m.categorie); sv('tm-marque',m.marque||''); sv('tm-stock',m.stock); sv('tm-seuil',m.seuil); sv('tm-unite',m.unite||''); openModal('modal-materiau'); };
-window.delMat = async function(id){ if(!confirm('Supprimer ?'))return; await fsDel('materiaux',id); };
+window.editMat=function(id){const m=cache.materiaux[id];sv('tm-id',m.id);sv('tm-nom',m.nom);sv('tm-cat',m.categorie);sv('tm-marque',m.marque||'');sv('tm-stock',m.stock);sv('tm-seuil',m.seuil);sv('tm-unite',m.unite||'');openModal('modal-materiau');};
+window.delMat=async function(id){if(!confirm('Supprimer ?'))return;await fsDel('materiaux',id);};
 
 // ── RECEPTIONS ────────────────────────────────────────────────────────────────
-window.updRecSel = function(){
+window.updRecSel=function(){
   const type=v('r-type');
   document.getElementById('r-produit').innerHTML=type==='implant'
     ?Object.values(cache.implants).map(i=>`<option value="${i.id}">${i.nom}</option>`).join('')
     :Object.values(cache.materiaux).map(m=>`<option value="${m.id}">${m.nom} (${catL[m.categorie]})</option>`).join('');
 };
-window.saveRec = async function(){
-  const type=v('r-type'); const pid=v('r-produit'); const qte=parseInt(v('r-qte'))||1;
-  if(!pid){alert('Sélectionnez un produit');return;}
-  // Update stock
-  if(type==='implant'){ const i=cache.implants[pid]; if(i) await fsSet('implants',pid,{...i,stock:(i.stock||0)+qte}); }
-  else{ const m=cache.materiaux[pid]; if(m) await fsSet('materiaux',pid,{...m,stock:(m.stock||0)+qte}); }
+window.saveRec=async function(){
+  const type=v('r-type'),pid=v('r-produit'),qte=parseInt(v('r-qte'))||1; if(!pid){alert('Sélectionnez un produit');return;}
+  if(type==='implant'){const i=cache.implants[pid];if(i)await fsSet('implants',pid,{...i,stock:(i.stock||0)+qte});}
+  else{const m=cache.materiaux[pid];if(m)await fsSet('materiaux',pid,{...m,stock:(m.stock||0)+qte});}
   const rid=genId('rec');
   await fsSet('receptions',rid,{id:rid,date:v('r-date')||today(),type,produitId:pid,qte,fournisseur:v('r-fournisseur'),note:v('r-note')});
   closeModal('modal-reception');
@@ -1184,31 +1117,24 @@ function renderDash(){
   const t=today();
   const upcoming=Object.values(cache.interventions).filter(x=>x.statut==='planifiee'&&x.date>=t).sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,5);
   document.getElementById('dash-upcoming').innerHTML=!upcoming.length?'<p style="color:var(--text2);font-size:13px">Aucune chirurgie planifiée</p>':
-    `<div class="timeline">`+upcoming.map(iv=>{
-      const imp=implantSummary(iv);
-      return `<div class="tl-item"><div class="tl-dot"></div><div class="tl-date">${iv.date}</div><div class="tl-content"><strong>${iv.patient}</strong> — ${iv.nature}${imp!=='—'?`<div style="font-size:11.5px;color:var(--text2)">🔩 ${imp}</div>`:''}${iv.praticien?`<span style="color:var(--text2);font-size:11px"> (${iv.praticien})</span>`:''}${iv.allergies?`<span style="color:var(--red);font-size:11px"> ⚠️ ${iv.allergies}</span>`:''}</div></div>`;
-    }).join('')+`</div>`;
-
+    `<div class="timeline">`+upcoming.map(iv=>{ const imp=implantSummary(iv); return `<div class="tl-item"><div class="tl-dot"></div><div class="tl-date">${iv.date}</div><div class="tl-content"><strong>${iv.patient}</strong> — ${iv.nature}${imp!=='—'?`<div style="font-size:11.5px;color:var(--text2)">🔩 ${imp}</div>`:''}${iv.praticien?`<span style="color:var(--text2);font-size:11px"> (${iv.praticien})</span>`:''}${iv.allergies?`<span style="color:var(--red);font-size:11px"> ⚠️ ${iv.allergies}</span>`:''}</div></div>`; }).join('')+`</div>`;
   const encours=Object.values(cache.interventions).filter(x=>x.statut==='encours').sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,6);
   document.getElementById('dash-encours').innerHTML=!encours.length?'<p style="color:var(--text2);font-size:13px">Aucun dossier en cours</p>':
     `<div class="timeline">`+encours.map(iv=>`<div class="tl-item"><div class="tl-dot" style="background:var(--orange)"></div><div class="tl-date">${iv.date}</div><div class="tl-content"><strong>${iv.patient}</strong> — ${iv.nature}${iv.praticien?`<span style="color:var(--text2);font-size:11px"> (${iv.praticien})</span>`:''}${iv.allergies?`<span style="color:var(--red);font-size:11px"> ⚠️ ${iv.allergies}</span>`:''}</div></div>`).join('')+`</div>`;
-
-  // Stock warnings for upcoming
   const warns=[];
   Object.values(cache.interventions).filter(x=>(x.statut==='planifiee'||x.statut==='encours')&&x.date>=t).forEach(iv=>{
-    (iv.actes?.implant?.items||[]).forEach(it=>{ const imp=cache.implants[it.ref]; if(imp&&imp.stock<(it.qte||1)) warns.push(`🔩 <strong>${imp.nom}</strong> manquant pour ${iv.patient} (${iv.date})`); });
-    if(iv.actes?.membrane?.ref){ const m=cache.materiaux[iv.actes.membrane.ref]; if(m&&m.stock<1) warns.push(`🫧 Membrane <strong>${m.nom}</strong> manquante pour ${iv.patient} (${iv.date})`); }
+    (iv.actes?.implant?.items||[]).forEach(it=>{const imp=cache.implants[it.ref];if(imp&&imp.stock<(it.qte||1))warns.push(`🔩 <strong>${imp.nom}</strong> manquant pour ${iv.patient} (${iv.date})`);});
+    if(iv.actes?.membrane?.ref){const m=cache.materiaux[iv.actes.membrane.ref];if(m&&m.stock<(iv.actes.membrane.qte||1))warns.push(`🫧 Membrane <strong>${m.nom}</strong> insuffisante pour ${iv.patient} (${iv.date})`);}
+    if(iv.actes?.biooss?.ref){const m=cache.materiaux[iv.actes.biooss.ref];if(m&&m.stock<(iv.actes.biooss.qte||1))warns.push(`🧱 Bio-Oss <strong>${m.nom}</strong> insuffisant pour ${iv.patient} (${iv.date})`);}
   });
   document.getElementById('dash-warn-banners').innerHTML=warns.map(w=>`<div class="alert-red">${w}</div>`).join('');
-
   const low=[...Object.values(cache.implants).filter(i=>i.stock<=i.seuil).map(i=>({...i,t:'Implant'})),...Object.values(cache.materiaux).filter(m=>m.stock<=m.seuil).map(m=>({...m,t:catL[m.categorie]}))];
   document.getElementById('dash-alerts-content').innerHTML=!low.length?'<p style="color:var(--green);font-size:13px">✅ Tous les stocks OK</p>':
-    low.map(x=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--surface2)"><div><div style="font-size:13px;font-weight:500">${x.nom}</div><div style="font-size:11px;color:var(--text2)">${x.t}</div></div><div><span style="font-size:16px;font-weight:700;color:var(--red)">${x.stock}</span><span style="font-size:11px;color:var(--text2)"> / seuil ${x.seuil}</span></div></div>`).join('');
+    low.map(x=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--surface2)"><div><div style="font-size:13px;font-weight:500">${x.nom}</div><div style="font-size:11px;color:var(--text2)">${x.t}</div></div><div><span style="font-size:16px;font-weight:700;color:var(--red)">${x.stock}</span><span style="font-size:11px;color:var(--text2)"> / seuil ${x.seuil}</span></div></div>`).join('');
 }
 
 function updateStats(){
-  const all=Object.values(cache.interventions);
-  const t=today();
+  const all=Object.values(cache.interventions), t=today();
   document.getElementById('stat-iv').textContent=all.length;
   document.getElementById('stat-upcoming').textContent=all.filter(x=>x.statut==='planifiee'&&x.date>=t).length;
   document.getElementById('stat-encours').textContent=all.filter(x=>x.statut==='encours').length;
@@ -1217,7 +1143,6 @@ function updateStats(){
 
 // ── INIT ─────────────────────────────────────────────────────────────────────
 document.getElementById('current-date').textContent=new Date().toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-document.getElementById('loading-msg').textContent='Connexion à Firebase…';
 startListeners();
 </script>
 </body>
