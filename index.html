@@ -1237,7 +1237,28 @@ window.renderStocksRecap=function(){
   [['🔩 Implants',impN],['💉 PRGF',prgfN],['🧱 Bio-Oss',bioN],['🫧 Membranes',memN],['🔧 Scrapers',scraperN]].forEach(([title,needs])=>{
     if(!Object.keys(needs).length)return;
     html+=`<div class="card" style="margin-bottom:14px"><div class="card-title">${title} — récap global</div>`;
-    Object.entries(needs).forEach(([,n])=>{const pct=Math.min(100,Math.round(n.stock/Math.max(n.needed,1)*100));const col=n.stock>=n.needed?'var(--green)':n.stock>0?'var(--orange)':'var(--red)';const sub=n.prgfType?`<span style="font-size:10.5px;background:${n.prgfType==='avec_calcium'?'#DBEAFE':'#F3F4F6'};color:${n.prgfType==='avec_calcium'?'#1E40AF':'#374151'};padding:1px 6px;border-radius:8px;margin-left:5px">${prgfTypeLabel(n.prgfType)}</span>`:'';html+=`<div class="stock-recap-row"><div><div style="font-weight:500">${n.nom}${sub}</div><div style="font-size:11.5px;color:var(--text2)">Besoin: ${n.needed} — Stock: ${n.stock}</div></div><div style="text-align:right;min-width:110px"><span style="font-size:15px;font-weight:700;color:${col}">${n.stock} / ${n.needed}</span><div class="stock-bar-bg" style="width:110px"><div class="stock-bar-fill" style="width:${pct}%;background:${col}"></div></div></div></div>`;});
+    Object.entries(needs).forEach(([,n])=>{
+      const ok=n.stock>=n.needed;
+      const manque=n.needed-n.stock;
+      const col=ok?'var(--green)':'var(--red)';
+      const sub=n.prgfType?`<span style="font-size:10.5px;background:${n.prgfType==='avec_calcium'?'#DBEAFE':'#F3F4F6'};color:${n.prgfType==='avec_calcium'?'#1E40AF':'#374151'};padding:1px 6px;border-radius:8px;margin-left:5px">${prgfTypeLabel(n.prgfType)}</span>`:'';
+      // Bar: each segment = 1 unit, up to needed total. Green = stock dispo, red = manquant
+      const total=n.needed;
+      const segments=Array.from({length:total},(_,i)=>`<span style="display:inline-block;width:20px;height:20px;border-radius:4px;margin:2px;background:${i<n.stock?'var(--green)':'var(--red)'};" title="${i<n.stock?'En stock':'Manquant'}"></span>`).join('');
+      html+=`<div style="padding:10px 0;border-bottom:1px solid var(--surface2)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+          <div><span style="font-weight:600;font-size:13.5px">${n.nom}</span>${sub}</div>
+          <div style="text-align:right">
+            <span style="font-size:18px;font-weight:700;color:${col}">${n.stock}</span>
+            <span style="font-size:12px;color:var(--text2)"> en stock / </span>
+            <span style="font-size:15px;font-weight:600;color:var(--text)">${n.needed}</span>
+            <span style="font-size:12px;color:var(--text2)"> nécessaire${n.needed>1?'s':''}</span>
+            ${!ok?`<span style="margin-left:8px;font-size:12px;font-weight:600;color:var(--red)">⚠️ Manque ${manque}</span>`:`<span style="margin-left:8px;font-size:12px;font-weight:600;color:var(--green)">✅ OK</span>`}
+          </div>
+        </div>
+        ${total<=20?`<div style="line-height:1">${segments}</div>`:`<div style="background:var(--surface2);border-radius:6px;height:12px;overflow:hidden;position:relative"><div style="position:absolute;left:0;top:0;bottom:0;width:${Math.min(100,Math.round(n.stock/n.needed*100))}%;background:${ok?'var(--green)':'var(--red)'};border-radius:6px"></div></div><div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--text2);margin-top:3px"><span>0</span><span>${n.needed} nécessaires</span></div>`}
+      </div>`;
+    });
     html+=`</div>`;
   });
   cont.innerHTML=html;
