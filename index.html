@@ -1117,12 +1117,117 @@ window.renderStocksRecap=function(){
     html+=`<div style="border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;${iv.statut==='encours'?'border-left:4px solid var(--orange);background:#FFF7ED':''}"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><div><strong>${iv.date}</strong> — ${iv.patient} <span style="color:var(--text2);font-size:12px">${iv.nature}</span></div><span class="badge ${SB[iv.statut]}">${SL[iv.statut]}</span></div>`;
     if(!Object.keys(actes).length){html+=`<div style="color:var(--text2);font-size:12px">Aucun acte renseigné</div>`;}
     else{
-      (actes.implant?.items||[]).forEach(it=>{const i=cache.implants[it.ref];const ok=i&&i.stock>=(it.qte||1);html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🔩 Implant${it.dent?' dent '+it.dent:it.loc?' '+it.loc:''}</div><div style="font-size:11.5px;color:var(--text2)">${i?.nom||'?'} × ${it.qte||1}</div></div><div style="text-align:right"><span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span><div style="font-size:11px;color:var(--text2)">Dispo: ${i?.stock??'?'}</div></div></div>`;});
-      if(actes.biooss){const m=cache.bioossStock[actes.biooss.ref];const ok=m&&m.stock>=(actes.biooss.qte||1);html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🧱 Bio-Oss</div><div style="font-size:11.5px;color:var(--text2)">${m?.nom||'?'} × ${actes.biooss.qte||1}</div></div><div style="text-align:right"><span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span><div style="font-size:11px;color:var(--text2)">Dispo: ${m?.stock??'?'}</div><span class="badge ${actes.biooss.recStatus==='recu'?'badge-green':'badge-amber'}" style="margin-top:3px;display:inline-block">${actes.biooss.recStatus==='recu'?'Reçu':'En attente'}</span></div></div>`;}
-      if(actes.membrane){const m=cache.materiaux[actes.membrane.ref];const ok=m&&m.stock>=(actes.membrane.qte||1);html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🫧 Membrane</div><div style="font-size:11.5px;color:var(--text2)">${m?.nom||'?'} × ${actes.membrane.qte||1} ${actes.membrane.taille||''}</div></div><div style="text-align:right"><span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span><div style="font-size:11px;color:var(--text2)">Dispo: ${m?.stock??'?'}</div></div></div>`;}
-      if(actes.scraper){const m=cache.materiaux[actes.scraper.ref];const ok=m&&m.stock>=(actes.scraper.qte||1);html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🔧 Scraper</div><div style="font-size:11.5px;color:var(--text2)">${m?.nom||'?'} × ${actes.scraper.qte||1}</div></div><div style="text-align:right"><span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span><div style="font-size:11px;color:var(--text2)">Dispo: ${m?.stock??'?'}</div></div></div>`;}
-      if(actes.prgf){const m=cache.prgfStock[actes.prgf.ref];html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">💉 PRGF</div><div style="font-size:11.5px;color:var(--text2)">${m?.nom||'?'}${m?' ('+prgfTypeLabel(m.prgfType)+')':''}</div></div><div><span class="badge ${actes.prgf.recStatus==='recu'?'badge-green':'badge-amber'}">${actes.prgf.recStatus==='recu'?'✅ Reçu':'⏳ En attente'}</span></div></div>`;}
-      if(actes.guide)html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">📐 Guide chirurgical</div>${actes.guide.empreinte?`<div style="font-size:11.5px;color:var(--text2)">Empreinte le ${actes.guide.empreinte}</div>`:''}</div><div><span class="badge ${actes.guide.recStatus==='recu'?'badge-green':'badge-amber'}">${actes.guide.recStatus==='recu'?'✅ Reçu':'⏳ En attente'}</span></div></div>`;
+      // helper: rec badge
+      const recBadge=rs=>`<span class="badge ${rs==='recu'?'badge-green':'badge-amber'}" style="display:inline-block">${rs==='recu'?'✅ Reçu':'⏳ En attente'}</span>`;
+
+      // IMPLANTS — stock dispo + rec-status par implant
+      (actes.implant?.items||[]).forEach(it=>{
+        const i=cache.implants[it.ref];
+        const ok=i&&i.stock>=(it.qte||1);
+        const rs=it.recStatus||'attente';
+        html+=`<div class="stock-recap-row">
+          <div>
+            <div style="font-weight:500;font-size:13px">🔩 Implant${it.dent?' dent '+it.dent:it.loc?' '+it.loc:''}</div>
+            <div style="font-size:11.5px;color:var(--text2)">${i?.nom||'?'} × ${it.qte||1}</div>
+          </div>
+          <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+            <span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span>
+            <div style="font-size:11px;color:var(--text2)">Dispo: ${i?.stock??'?'}</div>
+            ${recBadge(rs)}
+          </div>
+        </div>`;
+      });
+
+      // PRGF — stock dispo + rec-status
+      if(actes.prgf){
+        const m=cache.prgfStock[actes.prgf.ref];
+        const ok=m&&m.stock>=1;
+        const rs=actes.prgf.recStatus||'attente';
+        html+=`<div class="stock-recap-row">
+          <div>
+            <div style="font-weight:500;font-size:13px">💉 PRGF</div>
+            <div style="font-size:11.5px;color:var(--text2)">${m?.nom||'?'}${m?' ('+prgfTypeLabel(m.prgfType)+')':''}</div>
+          </div>
+          <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+            <span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span>
+            <div style="font-size:11px;color:var(--text2)">Dispo: ${m?.stock??'?'}</div>
+            ${recBadge(rs)}
+          </div>
+        </div>`;
+      }
+
+      // GUIDE — rec-status
+      if(actes.guide){
+        const rs=actes.guide.recStatus||'attente';
+        html+=`<div class="stock-recap-row">
+          <div>
+            <div style="font-weight:500;font-size:13px">📐 Guide chirurgical</div>
+            ${actes.guide.empreinte?`<div style="font-size:11.5px;color:var(--text2)">Empreinte le ${actes.guide.empreinte}</div>`:''}
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">${recBadge(rs)}</div>
+        </div>`;
+      }
+
+      // SCRAPER — stock dispo + rec-status
+      if(actes.scraper){
+        const m=cache.materiaux[actes.scraper.ref];
+        const ok=m&&m.stock>=(actes.scraper.qte||1);
+        const rs=actes.scraper.recStatus||'attente';
+        html+=`<div class="stock-recap-row">
+          <div>
+            <div style="font-weight:500;font-size:13px">🔧 Scraper</div>
+            <div style="font-size:11.5px;color:var(--text2)">${m?.nom||'?'} × ${actes.scraper.qte||1}</div>
+          </div>
+          <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+            <span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span>
+            <div style="font-size:11px;color:var(--text2)">Dispo: ${m?.stock??'?'}</div>
+            ${recBadge(rs)}
+          </div>
+        </div>`;
+      }
+
+      // BIO-OSS — stock dispo + rec-status
+      if(actes.biooss){
+        const m=cache.bioossStock[actes.biooss.ref];
+        const ok=m&&m.stock>=(actes.biooss.qte||1);
+        const rs=actes.biooss.recStatus||'attente';
+        html+=`<div class="stock-recap-row">
+          <div>
+            <div style="font-weight:500;font-size:13px">🧱 Bio-Oss</div>
+            <div style="font-size:11.5px;color:var(--text2)">${m?.nom||'?'} × ${actes.biooss.qte||1}${actes.biooss.note?' — '+actes.biooss.note:''}</div>
+          </div>
+          <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+            <span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span>
+            <div style="font-size:11px;color:var(--text2)">Dispo: ${m?.stock??'?'}</div>
+            ${recBadge(rs)}
+          </div>
+        </div>`;
+      }
+
+      // MEMBRANE — stock dispo + rec-status
+      if(actes.membrane){
+        const m=cache.materiaux[actes.membrane.ref];
+        const ok=m&&m.stock>=(actes.membrane.qte||1);
+        const rs=actes.membrane.recStatus||'attente';
+        html+=`<div class="stock-recap-row">
+          <div>
+            <div style="font-weight:500;font-size:13px">🫧 Membrane</div>
+            <div style="font-size:11.5px;color:var(--text2)">${m?.nom||'?'} × ${actes.membrane.qte||1}${actes.membrane.taille?' — '+actes.membrane.taille:''}</div>
+          </div>
+          <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+            <span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span>
+            <div style="font-size:11px;color:var(--text2)">Dispo: ${m?.stock??'?'}</div>
+            ${recBadge(rs)}
+          </div>
+        </div>`;
+      }
+
+      // ROG, Versah, Mectron, Extraction, Summers — actes sans stock, juste info
+      if(actes.rog)html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🦴 ROG</div>${actes.rog.note?`<div style="font-size:11.5px;color:var(--text2)">${actes.rog.note}</div>`:''}</div><div style="color:var(--text2);font-size:12px">Pas de stock</div></div>`;
+      if(actes.versah)html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">⚙️ Versah</div></div><div style="color:var(--text2);font-size:12px">Pas de stock</div></div>`;
+      if(actes.mectron)html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🔊 Mectron</div></div><div style="color:var(--text2);font-size:12px">Pas de stock</div></div>`;
+      if(actes.extraction)html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">🦷 Extraction</div>${actes.extraction.dents?`<div style="font-size:11.5px;color:var(--text2)">Dents: ${actes.extraction.dents}</div>`:''}</div><div style="color:var(--text2);font-size:12px">Pas de stock</div></div>`;
+      if(actes.summers)html+=`<div class="stock-recap-row"><div><div style="font-weight:500;font-size:13px">📐 Summers</div>${actes.summers.dent?`<div style="font-size:11.5px;color:var(--text2)">Site: ${actes.summers.dent}</div>`:''}</div><div style="color:var(--text2);font-size:12px">Pas de stock</div></div>`;
     }
     html+=`</div>`;
   });
