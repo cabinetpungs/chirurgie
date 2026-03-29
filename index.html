@@ -1099,17 +1099,19 @@ window.renderStocksRecap=function(){
   const upcoming=Object.values(cache.interventions).filter(x=>(x.statut==='prete'||x.statut==='encours')&&x.date>=t).sort((a,b)=>new Date(a.date)-new Date(b.date));
   const cont=document.getElementById('stocks-recap-content');
   if(!upcoming.length){cont.innerHTML=`<div class="card"><p style="color:var(--text2);text-align:center;padding:32px">Aucune intervention prête ou en cours.</p></div>`;return;}
-  const impN={},bioN={},memN={},scraperN={},warns=[];
+  const impN={},bioN={},memN={},scraperN={},prgfN={},warns=[];
   upcoming.forEach(iv=>{
     (iv.actes?.implant?.items||[]).forEach(it=>{if(!it.ref)return;if(!impN[it.ref]){const i=cache.implants[it.ref];impN[it.ref]={nom:i?.nom||'?',needed:0,stock:i?.stock||0};}impN[it.ref].needed+=(it.qte||1);});
     if(iv.actes?.membrane?.ref){const r=iv.actes.membrane.ref;if(!memN[r]){const m=cache.materiaux[r];memN[r]={nom:m?.nom||'?',needed:0,stock:m?.stock||0};}memN[r].needed+=(iv.actes.membrane.qte||1);}
     if(iv.actes?.biooss?.ref){const r=iv.actes.biooss.ref;if(!bioN[r]){const m=cache.bioossStock[r];bioN[r]={nom:m?.nom||'?',needed:0,stock:m?.stock||0};}bioN[r].needed+=(iv.actes.biooss.qte||1);}
     if(iv.actes?.scraper?.ref){const r=iv.actes.scraper.ref;if(!scraperN[r]){const m=cache.materiaux[r];scraperN[r]={nom:m?.nom||'?',needed:0,stock:m?.stock||0};}scraperN[r].needed+=(iv.actes.scraper.qte||1);}
+    if(iv.actes?.prgf?.ref){const r=iv.actes.prgf.ref;if(!prgfN[r]){const m=cache.prgfStock[r];prgfN[r]={nom:m?.nom||'?',prgfType:m?.prgfType||'',needed:0,stock:m?.stock||0};}prgfN[r].needed+=1;}
   });
-  Object.entries(impN).forEach(([,n])=>{if(n.stock<n.needed)warns.push(`Implant "${n.nom}" : stock ${n.stock} — besoin ${n.needed}`);});
-  Object.entries(memN).forEach(([,n])=>{if(n.stock<n.needed)warns.push(`Membrane "${n.nom}" : stock ${n.stock} — besoin ${n.needed}`);});
-  Object.entries(bioN).forEach(([,n])=>{if(n.stock<n.needed)warns.push(`Bio-Oss "${n.nom}" : stock ${n.stock} — besoin ${n.needed}`);});
-  Object.entries(scraperN).forEach(([,n])=>{if(n.stock<n.needed)warns.push(`Scraper "${n.nom}" : stock ${n.stock} — besoin ${n.needed}`);});
+  Object.entries(impN).forEach(([,n])=>{if(n.stock<n.needed)warns.push(`🔩 Implant "${n.nom}" : stock ${n.stock} — besoin ${n.needed}`);});
+  Object.entries(memN).forEach(([,n])=>{if(n.stock<n.needed)warns.push(`🫧 Membrane "${n.nom}" : stock ${n.stock} — besoin ${n.needed}`);});
+  Object.entries(bioN).forEach(([,n])=>{if(n.stock<n.needed)warns.push(`🧱 Bio-Oss "${n.nom}" : stock ${n.stock} — besoin ${n.needed}`);});
+  Object.entries(scraperN).forEach(([,n])=>{if(n.stock<n.needed)warns.push(`🔧 Scraper "${n.nom}" : stock ${n.stock} — besoin ${n.needed}`);});
+  Object.entries(prgfN).forEach(([,n])=>{if(n.stock<n.needed)warns.push(`💉 PRGF "${n.nom}"${n.prgfType?' ('+prgfTypeLabel(n.prgfType)+')':''} : stock ${n.stock} — besoin ${n.needed}`);});
   let html=warns.length?warns.map(w=>`<div class="alert-red">🚨 ${w}</div>`).join(''):`<div class="alert-ok">✅ Tous les stocks suffisants pour les interventions à venir.</div>`;
   html+=`<div class="card" style="margin-bottom:14px"><div class="card-title">Besoins par intervention</div>`;
   upcoming.forEach(iv=>{
@@ -1232,10 +1234,10 @@ window.renderStocksRecap=function(){
     html+=`</div>`;
   });
   html+=`</div>`;
-  [['🔩 Implants',impN],['🫧 Membranes',memN],['🧱 Bio-Oss',bioN],['🔧 Scrapers',scraperN]].forEach(([title,needs])=>{
+  [['🔩 Implants',impN],['💉 PRGF',prgfN],['🧱 Bio-Oss',bioN],['🫧 Membranes',memN],['🔧 Scrapers',scraperN]].forEach(([title,needs])=>{
     if(!Object.keys(needs).length)return;
     html+=`<div class="card" style="margin-bottom:14px"><div class="card-title">${title} — récap global</div>`;
-    Object.entries(needs).forEach(([,n])=>{const pct=Math.min(100,Math.round(n.stock/Math.max(n.needed,1)*100));const col=n.stock>=n.needed?'var(--green)':n.stock>0?'var(--orange)':'var(--red)';html+=`<div class="stock-recap-row"><div><div style="font-weight:500">${n.nom}</div><div style="font-size:11.5px;color:var(--text2)">Besoin: ${n.needed} — Stock: ${n.stock}</div></div><div style="text-align:right;min-width:110px"><span style="font-size:15px;font-weight:700;color:${col}">${n.stock} / ${n.needed}</span><div class="stock-bar-bg" style="width:110px"><div class="stock-bar-fill" style="width:${pct}%;background:${col}"></div></div></div></div>`;});
+    Object.entries(needs).forEach(([,n])=>{const pct=Math.min(100,Math.round(n.stock/Math.max(n.needed,1)*100));const col=n.stock>=n.needed?'var(--green)':n.stock>0?'var(--orange)':'var(--red)';const sub=n.prgfType?`<span style="font-size:10.5px;background:${n.prgfType==='avec_calcium'?'#DBEAFE':'#F3F4F6'};color:${n.prgfType==='avec_calcium'?'#1E40AF':'#374151'};padding:1px 6px;border-radius:8px;margin-left:5px">${prgfTypeLabel(n.prgfType)}</span>`:'';html+=`<div class="stock-recap-row"><div><div style="font-weight:500">${n.nom}${sub}</div><div style="font-size:11.5px;color:var(--text2)">Besoin: ${n.needed} — Stock: ${n.stock}</div></div><div style="text-align:right;min-width:110px"><span style="font-size:15px;font-weight:700;color:${col}">${n.stock} / ${n.needed}</span><div class="stock-bar-bg" style="width:110px"><div class="stock-bar-fill" style="width:${pct}%;background:${col}"></div></div></div></div>`;});
     html+=`</div>`;
   });
   cont.innerHTML=html;
