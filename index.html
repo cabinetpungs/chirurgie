@@ -453,20 +453,14 @@ select.form-control{cursor:pointer}
         </div>
       </div>
 
-      <!-- BIO-OSS — après scraper -->
+      <!-- BIO-OSS — après scraper, multi-items -->
       <div class="acte-row" id="ar-biooss">
         <input type="checkbox" class="acte-checkbox" id="ac-biooss" onchange="toggleAc('biooss')">
         <div style="flex:1">
-          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
-            <label class="acte-label-text" for="ac-biooss">Bio-Oss (comblement osseux)</label>
-            <div style="display:flex;align-items:center;gap:6px"><span style="font-size:10.5px;color:var(--text2)">Réception :</span><button class="rec-status attente" id="rec-biooss" onclick="toggleRec('biooss')">⏳ En attente</button></div>
-          </div>
+          <label class="acte-label-text" for="ac-biooss">Bio-Oss (comblement osseux)</label>
           <div class="acte-details" id="ad-biooss">
-            <div class="acte-details-row">
-              <div class="adf"><label>Référence Bio-Oss (stock)</label><select id="biooss-ref"><option value="">—</option></select></div>
-              <div class="adf" style="max-width:90px"><label>Qté</label><input type="number" id="biooss-qte" value="1" min="1"></div>
-              <div class="adf"><label>Note / grammage</label><input type="text" id="biooss-note" placeholder="0,5g, 1g…"></div>
-            </div>
+            <div id="biooss-list"></div>
+            <button class="btn btn-secondary btn-sm" onclick="addBioossItem()" style="margin-top:6px">+ Ajouter un Bio-Oss</button>
           </div>
         </div>
       </div>
@@ -722,9 +716,9 @@ function resetAdm(){admState={conebeam:'',devis:'',consentement:''};['conebeam',
 function loadAdm(data){if(!data)return;admState={...data};['conebeam','devis','consentement'].forEach(f=>{if(!admState[f])return;const btn=document.getElementById(`adm-${f}-${admState[f]}`);if(btn)btn.className='toggle-btn'+(admState[f]==='oui'?' yes':' no');});}
 
 // ── REC STATUS ────────────────────────────────────────────────────────────────
-// Note: implant rec-status is per-item now (not global)
-const REC_KEYS_GLOBAL=['prgf','scraper','biooss','membrane','guide'];
-let recSt={prgf:'attente',scraper:'attente',biooss:'attente',membrane:'attente',guide:'attente'};
+// Note: implant and biooss rec-status are per-item
+const REC_KEYS_GLOBAL=['prgf','scraper','membrane','guide'];
+let recSt={prgf:'attente',scraper:'attente',membrane:'attente',guide:'attente'};
 window.toggleRec=function(k){recSt[k]=recSt[k]==='recu'?'attente':'recu';updateRecBtn(k);};
 function updateRecBtn(k){const btn=document.getElementById('rec-'+k);if(!btn)return;recSt[k]==='recu'?(btn.className='rec-status recu',btn.textContent='✅ Reçu'):(btn.className='rec-status attente',btn.textContent='⏳ En attente');}
 function resetRecSt(){REC_KEYS_GLOBAL.forEach(k=>{recSt[k]='attente';updateRecBtn(k);});}
@@ -735,11 +729,13 @@ const ACTES=['implant','prgf','guide','rog','scraper','biooss','versah','mectron
 window.toggleAc=function(k){const on=document.getElementById('ac-'+k).checked;document.getElementById('ar-'+k).classList.toggle('active',on);};
 function resetActes(){
   ACTES.forEach(k=>{const cb=document.getElementById('ac-'+k);if(cb)cb.checked=false;document.getElementById('ar-'+k)?.classList.remove('active');});
-  ['rog-note','scraper-note','versah-note','mectron-note','prgf-note','ext-dents','ext-note','sum-dent','sum-note','biooss-note','mem-note','guide-note','guide-empreinte'].forEach(id=>sv(id,''));
-  ['prgf-ref','biooss-ref','mem-ref','mem-taille','scraper-ref'].forEach(id=>{const el=document.getElementById(id);if(el)el.selectedIndex=0;});
-  ['biooss-qte','mem-qte','scraper-qte'].forEach(id=>sv(id,1));
+  ['rog-note','scraper-note','versah-note','mectron-note','prgf-note','ext-dents','ext-note','sum-dent','sum-note','mem-note','guide-note','guide-empreinte'].forEach(id=>sv(id,''));
+  ['prgf-ref','mem-ref','mem-taille','scraper-ref'].forEach(id=>{const el=document.getElementById(id);if(el)el.selectedIndex=0;});
+  ['mem-qte','scraper-qte'].forEach(id=>sv(id,1));
   document.getElementById('implants-list').innerHTML='';
+  document.getElementById('biooss-list').innerHTML='';
   implantItems=[];implantItemId=0;
+  bioossItems=[];bioossItemId=0;
 }
 
 // ── MULTI-IMPLANTS (each with its own rec-status) ─────────────────────────────
@@ -777,9 +773,43 @@ function collectImplants(){return implantItems.map(({iid})=>{
   return{ref:v('impl-ref-'+iid),qte:parseInt(v('impl-qte-'+iid))||1,dent:v('impl-dent-'+iid),loc:v('impl-loc-'+iid),note:v('impl-note-'+iid),recStatus:btn&&btn.classList.contains('recu')?'recu':'attente'};
 }).filter(x=>x.ref||x.dent);}
 
+// ── MULTI-BIOOSS (each with its own rec-status) ───────────────────────────────
+let bioossItems=[],bioossItemId=0;
+window.addBioossItem=function(data){
+  const iid=++bioossItemId;bioossItems.push({iid});
+  const refs=Object.values(cache.bioossStock).map(m=>`<option value="${m.id}">${m.nom} (stock: ${m.stock})</option>`).join('');
+  const div=document.createElement('div');
+  div.className='implant-item';div.id='biooss-item-'+iid;
+  div.innerHTML=`<button class="rem-btn" onclick="removeBioossItem(${iid})">✕</button>
+    <div class="acte-details-row">
+      <div class="adf"><label>Référence Bio-Oss</label><select id="biooss-ref-${iid}"><option value="">—</option>${refs}</select></div>
+      <div class="adf" style="max-width:80px"><label>Qté</label><input type="number" id="biooss-qte-${iid}" value="1" min="1"></div>
+      <div class="adf"><label>Note / grammage</label><input type="text" id="biooss-note-${iid}" placeholder="0,5g, 1g…"></div>
+    </div>
+    <div style="margin-top:6px;display:flex;align-items:center;gap:7px">
+      <span style="font-size:10.5px;color:var(--text2)">Réception :</span>
+      <button class="rec-status attente" id="biooss-rec-${iid}" onclick="toggleBioossRec(${iid})">⏳ En attente</button>
+    </div>`;
+  document.getElementById('biooss-list').appendChild(div);
+  if(data){
+    sv('biooss-ref-'+iid,data.ref);sv('biooss-qte-'+iid,data.qte||1);sv('biooss-note-'+iid,data.note||'');
+    if(data.recStatus==='recu'){const btn=document.getElementById('biooss-rec-'+iid);if(btn){btn.className='rec-status recu';btn.textContent='✅ Reçu';}}
+  }
+};
+window.removeBioossItem=function(iid){bioossItems=bioossItems.filter(x=>x.iid!==iid);document.getElementById('biooss-item-'+iid)?.remove();};
+window.toggleBioossRec=function(iid){
+  const btn=document.getElementById('biooss-rec-'+iid);if(!btn)return;
+  const isRecu=btn.classList.contains('recu');
+  if(isRecu){btn.className='rec-status attente';btn.textContent='⏳ En attente';}
+  else{btn.className='rec-status recu';btn.textContent='✅ Reçu';}
+};
+function collectBiooss(){return bioossItems.map(({iid})=>{
+  const btn=document.getElementById('biooss-rec-'+iid);
+  return{ref:v('biooss-ref-'+iid),qte:parseInt(v('biooss-qte-'+iid))||1,note:v('biooss-note-'+iid),recStatus:btn&&btn.classList.contains('recu')?'recu':'attente'};
+}).filter(x=>x.ref);}
+
 function populateStockSels(){
   document.getElementById('mem-ref').innerHTML='<option value="">—</option>'+Object.values(cache.materiaux).filter(m=>m.categorie==='membrane').map(m=>`<option value="${m.id}">${m.nom} (stock: ${m.stock})</option>`).join('');
-  document.getElementById('biooss-ref').innerHTML='<option value="">—</option>'+Object.values(cache.bioossStock).map(m=>`<option value="${m.id}">${m.nom} (stock: ${m.stock})</option>`).join('');
   document.getElementById('scraper-ref').innerHTML='<option value="">—</option>'+Object.values(cache.materiaux).filter(m=>m.categorie==='scapper').map(m=>`<option value="${m.id}">${m.nom} (stock: ${m.stock})</option>`).join('');
   document.getElementById('prgf-ref').innerHTML='<option value="">—</option>'+Object.values(cache.prgfStock).map(m=>`<option value="${m.id}">${m.nom}${m.prgfType?' ('+prgfTypeLabel(m.prgfType)+')':''} (stock: ${m.stock})</option>`).join('');
 }
@@ -792,7 +822,7 @@ function collectActes(){
   if(chk('guide'))a.guide={empreinte:v('guide-empreinte'),note:v('guide-note'),recStatus:recSt.guide};
   if(chk('rog'))a.rog={note:v('rog-note')};
   if(chk('scraper'))a.scraper={ref:v('scraper-ref'),qte:parseInt(v('scraper-qte'))||1,note:v('scraper-note'),recStatus:recSt.scraper};
-  if(chk('biooss'))a.biooss={ref:v('biooss-ref'),qte:parseInt(v('biooss-qte'))||1,note:v('biooss-note'),recStatus:recSt.biooss};
+  if(chk('biooss'))a.biooss={items:collectBiooss()};
   if(chk('versah'))a.versah={note:v('versah-note')};
   if(chk('mectron'))a.mectron={note:v('mectron-note')};
   if(chk('extraction'))a.extraction={dents:v('ext-dents'),note:v('ext-note')};
@@ -810,7 +840,7 @@ function populateActes(actes){
     if(k==='guide'){sv('guide-empreinte',a.empreinte||'');sv('guide-note',a.note||'');}
     if(k==='rog')sv('rog-note',a.note);
     if(k==='scraper'){sv('scraper-ref',a.ref);sv('scraper-qte',a.qte||1);sv('scraper-note',a.note);}
-    if(k==='biooss'){sv('biooss-ref',a.ref||'');sv('biooss-qte',a.qte||1);sv('biooss-note',a.note);}
+    if(k==='biooss'&&a.items)a.items.forEach(item=>addBioossItem(item));
     if(k==='versah')sv('versah-note',a.note);
     if(k==='mectron')sv('mectron-note',a.note);
     if(k==='extraction'){sv('ext-dents',a.dents);sv('ext-note',a.note);}
@@ -844,7 +874,7 @@ window.saveIV=async function(){
 async function adjustStock(actes,delta){
   if(!actes)return;
   if(actes.implant?.items){for(const it of actes.implant.items){const i=cache.implants[it.ref];if(i)await fsSet('implants',it.ref,{...i,stock:Math.max(0,(i.stock||0)+delta*(it.qte||1))});}}
-  if(actes.biooss?.ref){const m=cache.bioossStock[actes.biooss.ref];if(m)await fsSet('bioossStock',actes.biooss.ref,{...m,stock:Math.max(0,(m.stock||0)+delta*(actes.biooss.qte||1))});}
+  if(actes.biooss?.items){for(const it of actes.biooss.items){const m=cache.bioossStock[it.ref];if(m)await fsSet('bioossStock',it.ref,{...m,stock:Math.max(0,(m.stock||0)+delta*(it.qte||1))});}}
   if(actes.membrane?.ref){const m=cache.materiaux[actes.membrane.ref];if(m)await fsSet('materiaux',actes.membrane.ref,{...m,stock:Math.max(0,(m.stock||0)+delta*(actes.membrane.qte||1))});}
   if(actes.scraper?.ref){const m=cache.materiaux[actes.scraper.ref];if(m)await fsSet('materiaux',actes.scraper.ref,{...m,stock:Math.max(0,(m.stock||0)+delta*(actes.scraper.qte||1))});}
 }
@@ -956,21 +986,23 @@ function buildFicheHTML(iv){
     else if(k==='guide'){if(a.empreinte)detail='Empreinte le '+a.empreinte;if(a.note)detail+=(detail?' — ':'')+a.note;}
     else if(k==='extraction')detail=a.dents?'Dents: '+a.dents:'';
     else if(k==='summers')detail=a.dent?'Site: '+a.dent:'';
-    else if(k==='biooss'){const m=cache.bioossStock[a.ref];detail=[m?.nom,a.qte>1?'×'+a.qte:null,a.note].filter(Boolean).join(' — ');}
+    else if(k==='biooss'&&a.items){detail=a.items.map(it=>{const m=cache.bioossStock[it.ref];const p=[m?.nom||'?'];if(it.qte>1)p.push('×'+it.qte);if(it.note)p.push(it.note);return p.join(' — ');}).join('<br>');}
+    else if(k==='biooss')detail='—'; // legacy single-item fallback
     else if(k==='scraper'){const m=cache.materiaux[a.ref];detail=[m?.nom,a.qte>1?'×'+a.qte:null,a.note].filter(Boolean).join(' — ');}
     else if(k==='membrane'){const m=cache.materiaux[a.ref];detail=[m?.nom,a.qte>1?'×'+a.qte:null,a.taille,a.note].filter(Boolean).join(' — ');}
     else if(a.note)detail=a.note;
 
-    // implant: show per-item rec status
+    // implant + biooss: per-item rec status — no global badge
     let recB='';
-    if(k==='implant'&&a.items){
-      // included in detail per item
-    } else if(a.recStatus){recB=`<span class="badge ${a.recStatus==='recu'?'badge-green':'badge-amber'}" style="margin-left:7px">${a.recStatus==='recu'?'✅ Reçu':'⏳ En attente'}</span>`;}
+    if(k!=='implant'&&k!=='biooss'&&a.recStatus){recB=`<span class="badge ${a.recStatus==='recu'?'badge-green':'badge-amber'}" style="margin-left:7px">${a.recStatus==='recu'?'✅ Reçu':'⏳ En attente'}</span>`;}
 
-    // implant detail with per-item rec status
+    // build detail HTML with per-item rec status for implant and biooss
     let detailHtml=detail;
     if(k==='implant'&&a.items){
       detailHtml=a.items.map(it=>{const imp=cache.implants[it.ref];const p=[imp?.nom||'?'];if(it.dent)p.push('dent '+it.dent);if(it.loc)p.push(it.loc);if(it.qte>1)p.push('×'+it.qte);if(it.note)p.push(it.note);const rs=it.recStatus==='recu'?'✅ Reçu':'⏳ En attente';const rsCls=it.recStatus==='recu'?'badge-green':'badge-amber';return `<div style="display:flex;align-items:center;gap:8px;padding:3px 0">${p.join(' — ')} <span class="badge ${rsCls}" style="font-size:10px">${rs}</span></div>`;}).join('');
+    }
+    if(k==='biooss'&&a.items){
+      detailHtml=a.items.map(it=>{const m=cache.bioossStock[it.ref];const p=[m?.nom||'?'];if(it.qte>1)p.push('×'+it.qte);if(it.note)p.push(it.note);const rs=it.recStatus==='recu'?'✅ Reçu':'⏳ En attente';const rsCls=it.recStatus==='recu'?'badge-green':'badge-amber';return `<div style="display:flex;align-items:center;gap:8px;padding:3px 0">${p.join(' — ')} <span class="badge ${rsCls}" style="font-size:10px">${rs}</span></div>`;}).join('');
     }
 
     return `<div style="padding:8px 0;border-bottom:1px solid var(--surface2)"><div style="display:flex;align-items:center;gap:7px;margin-bottom:${detailHtml?'3px':'0'}"><span class="badge badge-blue">${aLBL[k]||k}</span>${recB}</div>${detailHtml?`<div style="font-size:12.5px;color:var(--text2)">${detailHtml}</div>`:''}</div>`;
@@ -1165,7 +1197,9 @@ window.renderStocksRecap=function(){
   upcoming.forEach(iv=>{
     (iv.actes?.implant?.items||[]).forEach(it=>{if(!it.ref)return;if(!impN[it.ref]){const i=cache.implants[it.ref];impN[it.ref]={nom:i?.nom||'?',needed:0,stock:i?.stock||0};}impN[it.ref].needed+=(it.qte||1);});
     if(iv.actes?.membrane?.ref){const r=iv.actes.membrane.ref;if(!memN[r]){const m=cache.materiaux[r];memN[r]={nom:m?.nom||'?',needed:0,stock:m?.stock||0};}memN[r].needed+=(iv.actes.membrane.qte||1);}
-    if(iv.actes?.biooss?.ref){const r=iv.actes.biooss.ref;if(!bioN[r]){const m=cache.bioossStock[r];bioN[r]={nom:m?.nom||'?',needed:0,stock:m?.stock||0};}bioN[r].needed+=(iv.actes.biooss.qte||1);}
+    // biooss: now items array (also handle legacy single-ref)
+    (iv.actes?.biooss?.items||[]).forEach(it=>{if(!it.ref)return;if(!bioN[it.ref]){const m=cache.bioossStock[it.ref];bioN[it.ref]={nom:m?.nom||'?',needed:0,stock:m?.stock||0};}bioN[it.ref].needed+=(it.qte||1);});
+    if(iv.actes?.biooss?.ref&&!iv.actes.biooss.items){const r=iv.actes.biooss.ref;if(!bioN[r]){const m=cache.bioossStock[r];bioN[r]={nom:m?.nom||'?',needed:0,stock:m?.stock||0};}bioN[r].needed+=(iv.actes.biooss.qte||1);}
     if(iv.actes?.scraper?.ref){const r=iv.actes.scraper.ref;if(!scraperN[r]){const m=cache.materiaux[r];scraperN[r]={nom:m?.nom||'?',needed:0,stock:m?.stock||0};}scraperN[r].needed+=(iv.actes.scraper.qte||1);}
     if(iv.actes?.prgf?.ref){const r=iv.actes.prgf.ref;if(!prgfN[r]){const m=cache.prgfStock[r];prgfN[r]={nom:m?.nom||'?',prgfType:m?.prgfType||'',needed:0,stock:m?.stock||0};}prgfN[r].needed+=1;}
   });
@@ -1250,22 +1284,29 @@ window.renderStocksRecap=function(){
         </div>`;
       }
 
-      // BIO-OSS — stock dispo + rec-status
+      // BIO-OSS — multi-items, stock dispo + rec-status par item
       if(actes.biooss){
-        const m=cache.bioossStock[actes.biooss.ref];
-        const ok=m&&m.stock>=(actes.biooss.qte||1);
-        const rs=actes.biooss.recStatus||'attente';
-        html+=`<div class="stock-recap-row">
-          <div>
-            <div style="font-weight:500;font-size:13px">🧱 Bio-Oss</div>
-            <div style="font-size:11.5px;color:var(--text2)">${m?.nom||'?'} × ${actes.biooss.qte||1}${actes.biooss.note?' — '+actes.biooss.note:''}</div>
-          </div>
-          <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px">
-            <span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span>
-            <div style="font-size:11px;color:var(--text2)">Dispo: ${m?.stock??'?'}</div>
-            ${recBadge(rs)}
-          </div>
-        </div>`;
+        // new format: items array
+        const bioossList=actes.biooss.items||[];
+        // legacy single-ref fallback
+        const legacyList=(!actes.biooss.items&&actes.biooss.ref)?[{ref:actes.biooss.ref,qte:actes.biooss.qte||1,note:actes.biooss.note||'',recStatus:actes.biooss.recStatus||'attente'}]:[];
+        const allBiooss=[...bioossList,...legacyList];
+        allBiooss.forEach(it=>{
+          const m=cache.bioossStock[it.ref];
+          const ok=m&&m.stock>=(it.qte||1);
+          const rs=it.recStatus||'attente';
+          html+=`<div class="stock-recap-row">
+            <div>
+              <div style="font-weight:500;font-size:13px">🧱 Bio-Oss</div>
+              <div style="font-size:11.5px;color:var(--text2)">${m?.nom||'?'} × ${it.qte||1}${it.note?' — '+it.note:''}</div>
+            </div>
+            <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+              <span style="font-size:13px;font-weight:600;color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ OK':'❌ Insuffisant'}</span>
+              <div style="font-size:11px;color:var(--text2)">Dispo: ${m?.stock??'?'}</div>
+              ${recBadge(rs)}
+            </div>
+          </div>`;
+        });
       }
 
       // MEMBRANE — stock dispo + rec-status
